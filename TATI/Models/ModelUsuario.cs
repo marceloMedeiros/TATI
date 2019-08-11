@@ -13,6 +13,7 @@ namespace TATI.Models
     {
         public Int32 UsuarioID { set; get; }
         public string Login { set; get; }
+        public string Nome { set; get; }
         public string Senha { set; get; }
         public bool Administrador { set; get; }
         public ICollection<Documento> Documentos { get; set; }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -35,6 +36,7 @@
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblErro = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -53,6 +55,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(158, 20);
             this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
             // 
             // lblUsuario
             // 
@@ -70,6 +73,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(158, 20);
             this.txtSenha.TabIndex = 1;
+            this.txtSenha.Enter += new System.EventHandler(this.txtSenha_Enter);
             // 
             // lblSenha
             // 
@@ -102,12 +106,24 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "2019 - Marcelo Medeiros";
             // 
+            // lblErro
+            // 
+            this.lblErro.AutoSize = true;
+            this.lblErro.ForeColor = System.Drawing.Color.Red;
+            this.lblErro.Location = new System.Drawing.Point(144, 179);
+            this.lblErro.Name = "lblErro";
+            this.lblErro.Size = new System.Drawing.Size(156, 13);
+            this.lblErro.TabIndex = 5;
+            this.lblErro.Text = "Usuário e/ou senha incorreto(s)";
+            this.lblErro.Visible = false;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(437, 237);
+            this.Controls.Add(this.lblErro);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblSenha);
@@ -116,6 +132,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -135,5 +152,6 @@
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblErro;
     }
 }

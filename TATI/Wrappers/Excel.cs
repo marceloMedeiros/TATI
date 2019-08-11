@@ -125,10 +125,7 @@ namespace Wrappers
             this.hssfworkbook.Write(stream);
         }
 
-        public bool ConverterParaDataTable(out DataTable dt)
-        {
-            return ConverterParaDataTable(out dt, false);
-        }
+        public bool ConverterParaDataTable(out DataTable dt) => ConverterParaDataTable(out dt, false);
 
         public bool ConverterParaDataTable(out DataTable dt, bool cabecalho)
         {

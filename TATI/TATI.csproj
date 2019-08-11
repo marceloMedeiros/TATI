@@ -73,7 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadastroMotoristaContext.cs" />
+    <Compile Include="Migrations\201908110439107_nomeUsuario.cs" />
+    <Compile Include="Migrations\201908110439107_nomeUsuario.Designer.cs">
+      <DependentUpon>201908110439107_nomeUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\CadastroMotoristaContext.cs" />
     <Compile Include="Extensions\Contantes.cs" />
     <Compile Include="Migrations\201908110307106_inicia.cs" />
     <Compile Include="Migrations\201908110307106_inicia.Designer.cs">
@@ -94,11 +98,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ModelProtocolo.cs" />
     <Compile Include="Wrappers\Excel.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -116,6 +120,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908110307106_inicia.resx">
       <DependentUpon>201908110307106_inicia.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908110345056_fks.resx">
       <DependentUpon>201908110345056_fks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908110439107_nomeUsuario.resx">
+      <DependentUpon>201908110439107_nomeUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -150,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

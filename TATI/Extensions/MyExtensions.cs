@@ -564,5 +564,10 @@ namespace Extensions
             return new[] { instance }.AsQueryable();
         }
 
+        public static void EnableTab(System.Windows.Forms.TabPage page, bool enable)
+        {
+            foreach (System.Windows.Forms.Control ctl in page.Controls) ctl.Enabled = enable;
+        }
+
     }
 }
