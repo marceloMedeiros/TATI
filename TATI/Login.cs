@@ -44,7 +44,29 @@ namespace TATI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            Logar();
+        }
 
+        private void txtUsuario_Enter(object sender, EventArgs e)
+        {
+            txtUsuario.SelectAll();
+        }
+
+        private void txtSenha_Enter(object sender, EventArgs e)
+        {
+            txtSenha.SelectAll();
+        }
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Logar();
+            }
+        }
+
+        private void Logar()
+        {
             lblErro.Visible = false;
             Usuario usuario = verificaCredenciais(txtUsuario.Text, txtSenha.Text);
 
@@ -63,16 +85,6 @@ namespace TATI
                 form.ShowDialog();
                 limpar();
             }
-        }
-
-        private void txtUsuario_Enter(object sender, EventArgs e)
-        {
-            txtUsuario.SelectAll();
-        }
-
-        private void txtSenha_Enter(object sender, EventArgs e)
-        {
-            txtSenha.SelectAll();
         }
     }
 }
