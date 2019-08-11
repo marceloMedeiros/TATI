@@ -12,7 +12,7 @@ namespace TATI.Models
     public class Motorista
     {
         public Int32 MotoristaID { set; get; }
-        public string MotoristaNome { set; get; }
+        public string Nome { set; get; }
         public string Celular { set; get; }
         public string Email { set; get; }
         public string CPFouCNPJ { set; get; }

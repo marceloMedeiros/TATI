@@ -12,7 +12,6 @@ namespace TATI.Models
     {
         public Int32 ProtocoloID { set; get; }
         public byte[] dados { set; get; }
-        public Int32 DocumentoID { set; get; }
         public Documento Documento { get; set; }
     }
 }

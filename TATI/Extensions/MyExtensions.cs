@@ -1,13 +1,12 @@
 using System;
-using System.Globalization;
-using System.Web;
-using System.Linq;
 using System.Collections.Generic;
-using System.Data;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
+using System.Data;
+using System.Globalization;
+using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Extensions
 {
@@ -16,9 +15,13 @@ namespace Extensions
         public static string Truncate(this string value, int length)
         {
             if (value != null)
+            {
                 return (value.Length > length) ? value.Substring(0, length) : value;
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static object GetPropertyValue(this object obj, string propertyName)
@@ -30,41 +33,61 @@ namespace Extensions
         public static byte? ConvertToByte(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToByte(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static short? ConvertToInt16(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToInt16(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static int ConvertToInt(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToInt32(value);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static int? ConvertToInt32(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToInt32(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static long? ConvertToInt64(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToInt64(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static long ConvertToLong(this string value)
@@ -76,105 +99,157 @@ namespace Extensions
         public static decimal? ConvertToDecimal(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToDecimal(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static decimal ConvertToNumeric(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToDecimal(value);
+            }
             else
+            {
                 return 0;
+            }
         }
-        
+
         public static float ConvertToFloat(this string value)
         {
             if (value != String.Empty)
+            {
                 return float.Parse(value, CultureInfo.InvariantCulture.NumberFormat);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static double? ConvertToDoubleNullable(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToDouble(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static double ConvertToDouble(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToDouble(value);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static DateTime ToDateTime(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToDateTime(value);
+            }
             else
+            {
                 return DateTime.MinValue;
+            }
         }
 
         public static DateTime? ConvertToDateTime(this string value)
         {
             if (value != String.Empty)
+            {
                 return Convert.ToDateTime(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static Boolean IsNull(this object value)
         {
             if (value == null)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean IsNullOrEmpty(this string value)
         {
             if ((value == null) || (value == String.Empty))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean IsZero(this decimal value)
         {
             if (value == 0)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean IsZero(this int value)
         {
             if (value == 0)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean IsNullOrIsZero(this decimal? value)
         {
             if ((value == null) || (value == 0))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean IsNullOrIsZero(this int? value)
         {
             if ((value == null) || (value == 0))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
         /*
         public static DataTable ToDataTable<T>(this IList<T> data)
@@ -210,8 +285,9 @@ namespace Extensions
                 Type type = propertyDescriptor.PropertyType;
 
                 if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                {
                     type = Nullable.GetUnderlyingType(type);
-
+                }
 
                 dataTable.Columns.Add(propertyDescriptor.Name, type);
             }
@@ -234,89 +310,133 @@ namespace Extensions
         public static long? ConvertToInt64(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToInt64(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static long ConvertToLong(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToInt64(value);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static decimal? ConvertToDecimalNullable(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToDecimal(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static decimal ConvertToDecimal(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToDecimal(value);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static double ConvertToDouble(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToDouble(value);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static int? ConvertToInt32(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToInt32(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static int ConvertToInt(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToInt32(value);
+            }
             else
+            {
                 return 0;
+            }
         }
 
         public static int? ConvertToIntNullable(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToInt32(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static string ConvertToString(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return value.ToString();
+            }
             else
+            {
                 return String.Empty;
+            }
         }
 
         public static DateTime ConvertToDateTime(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToDateTime(value);
+            }
             else
+            {
                 return DateTime.MinValue;
+            }
         }
 
         public static DateTime? ConvertToDateTimeOrNull(this object value)
         {
             if (!value.IsNull() && value.ToString() != String.Empty)
+            {
                 return Convert.ToDateTime(value);
+            }
             else
+            {
                 return null;
+            }
         }
 
         public static string ConvertToRealCurrency(this decimal value)
@@ -364,15 +484,21 @@ namespace Extensions
         public static string ToString(this DateTime? value, string mascara)
         {
             if (value != null)
+            {
                 return ((DateTime)value).ToString(mascara);
+            }
             else
+            {
                 return String.Empty;
+            }
         }
 
         public static bool In<T>(this T item, params T[] items)
         {
             if (items == null)
+            {
                 throw new ArgumentNullException("items");
+            }
 
             return items.Contains(item);
         }
@@ -385,7 +511,9 @@ namespace Extensions
                 return Rgx.Replace(value, ""); ;
             }
             else
+            {
                 return String.Empty;
+            }
         }
 
         public static string RemoveAcentos(this string text)
@@ -407,7 +535,9 @@ namespace Extensions
                 return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
             }
             else
+            {
                 return String.Empty;
+            }
         }
 
         public static string UnmaskFile(this string value)
@@ -418,7 +548,9 @@ namespace Extensions
                 return Rgx.Replace(value, ""); ;
             }
             else
+            {
                 return String.Empty;
+            }
         }
 
         public static bool IsNumeric(this string s)
@@ -443,10 +575,14 @@ namespace Extensions
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean isEmail(this string emailaddress)
@@ -473,10 +609,14 @@ namespace Extensions
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             else
+            {
                 return false;
+            }
         }
 
         public static Boolean isCNPJ(this string value)
@@ -489,12 +629,16 @@ namespace Extensions
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             else
+            {
                 return false;
+            }
         }
-        
+
         public static Boolean isLatLng(this string value)
         {
             if (value != null)
@@ -505,10 +649,14 @@ namespace Extensions
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             else
+            {
                 return false;
+            }
         }
 
         public static T SingleOrDefault<T>(this List<T> lst)
@@ -525,9 +673,13 @@ namespace Extensions
         public static bool ConvertToBool(this object value)
         {
             if (!value.IsNull() && (value.ToString() == "1" || value.ToString() == "True"))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         private static Random rng = new Random();
@@ -566,7 +718,129 @@ namespace Extensions
 
         public static void EnableTab(System.Windows.Forms.TabPage page, bool enable)
         {
-            foreach (System.Windows.Forms.Control ctl in page.Controls) ctl.Enabled = enable;
+            foreach (System.Windows.Forms.Control ctl in page.Controls)
+            {
+                ctl.Enabled = enable;
+            }
+        }
+
+        public static bool IsCnpj(string cnpj)
+        {
+            int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int soma;
+            int resto;
+            string digito;
+            string tempCnpj;
+
+            cnpj = cnpj.Trim();
+            cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
+
+            if (cnpj.Length != 14)
+            {
+                return false;
+            }
+
+            tempCnpj = cnpj.Substring(0, 12);
+
+            soma = 0;
+            for (int i = 0; i < 12; i++)
+            {
+                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador1[i];
+            }
+
+            resto = (soma % 11);
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = resto.ToString();
+
+            tempCnpj = tempCnpj + digito;
+            soma = 0;
+            for (int i = 0; i < 13; i++)
+            {
+                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador2[i];
+            }
+
+            resto = (soma % 11);
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = digito + resto.ToString();
+
+            return cnpj.EndsWith(digito);
+        }
+
+        public static bool IsCpf(string cpf)
+        {
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string tempCpf;
+            string digito;
+            int soma;
+            int resto;
+
+            cpf = cpf.Trim();
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            if (cpf.Length != 11)
+            {
+                return false;
+            }
+
+            tempCpf = cpf.Substring(0, 9);
+            soma = 0;
+
+            for (int i = 0; i < 9; i++)
+            {
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+            }
+
+            resto = soma % 11;
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = resto.ToString();
+
+            tempCpf = tempCpf + digito;
+
+            soma = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+            }
+
+            resto = soma % 11;
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = digito + resto.ToString();
+
+            return cpf.EndsWith(digito);
         }
 
     }

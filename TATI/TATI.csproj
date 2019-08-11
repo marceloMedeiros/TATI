@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201908110439107_nomeUsuario.Designer.cs">
       <DependentUpon>201908110439107_nomeUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908110532526_correcoes.cs" />
+    <Compile Include="Migrations\201908110532526_correcoes.Designer.cs">
+      <DependentUpon>201908110532526_correcoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\CadastroMotoristaContext.cs" />
     <Compile Include="Extensions\Contantes.cs" />
     <Compile Include="Migrations\201908110307106_inicia.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908110439107_nomeUsuario.resx">
       <DependentUpon>201908110439107_nomeUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908110532526_correcoes.resx">
+      <DependentUpon>201908110532526_correcoes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

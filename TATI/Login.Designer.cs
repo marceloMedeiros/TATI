@@ -92,9 +92,9 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(30, 23);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(378, 31);
+            this.lblTitulo.Size = new System.Drawing.Size(370, 31);
             this.lblTitulo.TabIndex = 3;
-            this.lblTitulo.Text = "TATI - Cadastro de Motoristas";
+            this.lblTitulo.Text = "TATI - Controle de Motoristas";
             // 
             // label1
             // 
