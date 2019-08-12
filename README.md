@@ -1,5 +1,5 @@
-# TATI
-Projeto em c# desenvolvido para exame de proficiência na disciplina TATI, do 6º semestre do curso GTI da FATEC Jundiaí.
+# TATI - Proficiência
+Projeto de um sistema de Controle de Motoristas em c# desenvolvido para exame de proficiência na disciplina TATI, do 6º semestre do curso GTI da FATEC Jundiaí.
 
 </br>
 Teconologias utilizadas:
