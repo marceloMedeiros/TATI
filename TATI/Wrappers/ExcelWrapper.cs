@@ -12,7 +12,7 @@ using NPOI.SS.UserModel;
 
 namespace Wrappers
 {
-    public class Excel : IDisposable
+    public class ExcelWrapper : IDisposable
     {
         private IRow row;
         private ISheet sheet1;
@@ -20,7 +20,7 @@ namespace Wrappers
         private int LinhaExcel = 0;
         public int TotalDeLinhas { get { return LinhaExcel; } }
 
-        public Excel(string companyName, string subject, string sheetName)
+        public ExcelWrapper(string companyName, string subject, string sheetName)
         {
             hssfworkbook = new HSSFWorkbook();
             DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
@@ -33,7 +33,7 @@ namespace Wrappers
             row = sheet1.CreateRow(LinhaExcel);
         }
 
-        public Excel(System.IO.Stream sIOs)
+        public ExcelWrapper(System.IO.Stream sIOs)
         {
             hssfworkbook = new HSSFWorkbook(sIOs);
             //DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();

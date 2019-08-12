@@ -1,11 +1,13 @@
 ﻿using Extensions;
 using System;
+using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TATI.Models;
+using Wrappers;
 
 namespace TATI
 {
@@ -23,7 +25,8 @@ namespace TATI
         private void Menu_Load(object sender, EventArgs e)
         {
             this.MinimumSize = new System.Drawing.Size(695, 600);
-            this.Text += " - Usuário ativo: " + usuarioLogin.Nome;
+            this.Text += "   - Usuário ativo: " + usuarioLogin.Nome
+                         + "   - Nível de Acesso: " + (usuarioLogin.Administrador ? "Administrador" : "Usuário");
 
             if (usuarioLogin.Administrador)
             {
@@ -266,6 +269,45 @@ namespace TATI
             }
         }
 
+        private void btnMotoristaRelatorio_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            Action<ExcelWrapper> fncGeraHeaderExcel = (objExcel) =>
+            {
+                using (var context = new CadastroMotoristaContext())
+                {
+                    BindingSource bi = new BindingSource();
+                    dt = context.Motoristas.ToList().ToDataTable();
+                    objExcel.GeraHeader(false, dt.Columns.Cast<DataColumn>()
+                                                     .Select(x => x.ColumnName)
+                                                     .ToArray());
+                }
+            };
+
+            using (ExcelWrapper ex = new ExcelWrapper("Controle de Motoristas", "Documentos", "documentos"))
+            {
+                fncGeraHeaderExcel(ex);
+                foreach (DataRow row in dt.Rows)
+                {
+                    uint colcnt = 0;
+
+                    foreach (DataColumn dc in dt.Columns)
+                    {
+                        ex.AdicionaConteudo(row[dc].ToString(), colcnt++);
+                    }
+                    ex.IncrementaLinha();
+                }
+                ex.AjustaHeader();
+                MemoryStream ms = new MemoryStream();
+                ex.WriteToMemory(ms);
+                string varq = MemoryStreamParaArquivo(ms, ".xlsx", true);
+                if (varq != string.Empty)
+                {
+                    System.Diagnostics.Process.Start(varq);
+                }
+            }
+        }
+
         #endregion
 
         #region Documento
@@ -276,6 +318,7 @@ namespace TATI
             btnDocumentoDownload.Enabled = false;
             btnDocumentoIncluir.Enabled = true;
             btnDocumentoExcluir.Enabled = false;
+            cbxAprovacaoMotoristaID.Enabled = true;
 
             txtDocumentoDocumentoID.Text = String.Empty;
             txtDocumentoArquivo.Text = String.Empty;
@@ -354,6 +397,7 @@ namespace TATI
 
                     txtDocumentoArquivo.Text = String.Format("{0}{1}", documento.nomeArquivo, documento.extensaoArquivo);
 
+                    cbxAprovacaoMotoristaID.Enabled = false;
                     btnDocumentoIncluir.Enabled = false;
                     btnDocumentoExcluir.Enabled = true;
                     btnDocumentoSelecionar.Enabled = false;
@@ -430,7 +474,7 @@ namespace TATI
 
                 Wrappers.PdfWrapper pdf = new Wrappers.PdfWrapper();
                 pdf.addParagraph("Cadastro de Motoristas");
-                pdf.addParagraph(string.Format("Documento nº{0} recebido com sucesso e anexado ao cadastro do(a) Motorista {1}.", documento.DocumentoID, documento.Motorista.Nome));
+                pdf.addParagraph(string.Format("Documento nº{0} recebido com sucesso e anexado ao cadastro do(a) motorista {1}.", documento.DocumentoID, documento.Motorista.Nome));
                 pdf.addParagraph(string.Format("Nº do protocolo: {0}.", numeroProtocolo));
                 protUpdate.dados = pdf.gerarPDF();
 
@@ -492,7 +536,7 @@ namespace TATI
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog()
             {
-                Filter = "Documentos (*.txt;*.pdf;*.doc,*.docx,*.odt,*.jpg,*.jpeg,*.png)|*.txt;*.pdf;*.doc,*.docx,*.odt,*.jpg,*.jpeg,*.png|" + "Todos os Arquivos (*.*)|*.*",
+                Filter = "Documentos (*.txt;*.pdf;*.doc;*.docx;*.odt;*.jpg;*.jpeg;*.png)|*.txt;*.pdf;*.doc;*.docx;*.odt;*.jpg;*.jpeg;*.png|" + "Todos os Arquivos (*.*)|*.*",
                 FilterIndex = 1,
                 Multiselect = false,
                 ShowReadOnly = true,
@@ -525,7 +569,7 @@ namespace TATI
 
         private void rdbDocumentoReprovado_EnabledChanged(object sender, EventArgs e)
         {
-            rdbDocumentoReprovado.ForeColor = System.Drawing.Color.White;
+            ((RadioButton)sender).ForeColor = System.Drawing.Color.White;
         }
 
         private void rdbDocumentoReprovado_Paint(object sender, PaintEventArgs e)
@@ -563,7 +607,6 @@ namespace TATI
 
         private void btnDocumentoAbrir_Click(object sender, EventArgs e)
         {
-
             Int32 documentoID = txtDocumentoDocumentoID.Text.ConvertToInt();
             using (MemoryStream memoryStream = new MemoryStream())
             {
@@ -585,6 +628,445 @@ namespace TATI
             }
         }
 
+        private void btnDocumentosAbrirProtocolo_Click(object sender, EventArgs e)
+        {
+            Int32 documentoID = txtDocumentoDocumentoID.Text.ConvertToInt();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (var context = new CadastroMotoristaContext())
+                {
+                    var protocolo = context.Protocolos
+                                         .Where(a => a.Documento.DocumentoID == documentoID)
+                                         .FirstOrDefault<Protocolo>();
+                    if (protocolo != null)
+                    {
+                        memoryStream.Write(protocolo.dados, 0, protocolo.dados.Length);
+                        string varq = MemoryStreamParaArquivo(memoryStream, ".pdf", true);
+                        if (varq != string.Empty)
+                        {
+                            System.Diagnostics.Process.Start(varq);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnDocumentoRelatorio_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            Action<ExcelWrapper> fncGeraHeaderExcel = (objExcel) =>
+            {
+                using (var context = new CadastroMotoristaContext())
+                {
+                    BindingSource bi = new BindingSource();
+                    dt = context.Documentos.ToList().ToDataTable();
+                    objExcel.GeraHeader(false, dt.Columns.Cast<DataColumn>()
+                                                     .Select(x => x.ColumnName)
+                                                     .ToArray());
+                }
+            };
+
+            using (ExcelWrapper ex = new ExcelWrapper("Controle de Motoristas", "Documentos", "documentos"))
+            {
+                fncGeraHeaderExcel(ex);
+                foreach (DataRow row in dt.Rows)
+                {
+                    uint colcnt = 0;
+
+                    foreach (DataColumn dc in dt.Columns)
+                    {
+                        ex.AdicionaConteudo(row[dc].ToString(), colcnt++);
+                    }
+                    ex.IncrementaLinha();
+                }
+                ex.AjustaHeader();
+                MemoryStream ms = new MemoryStream();
+                ex.WriteToMemory(ms);
+                string varq = MemoryStreamParaArquivo(ms, ".xlsx", true);
+                if (varq != string.Empty)
+                {
+                    System.Diagnostics.Process.Start(varq);
+                }
+            }
+        }
+
+
         #endregion
+
+        #region Aprovacao
+
+        private void LimparAprovacao()
+        {
+            btnAprovacaoAprovar.Enabled = false;
+            btnAprovacaoReprovar.Enabled = false;
+            btnAprovacaoAbrir.Enabled = false;
+            txtAprovacaoMensagem.Enabled = false;
+
+            rdbAprovacaoAprovado.Enabled = false;
+            rdbAprovacaoReprovado.Enabled = false;
+
+            txtAprovacaoDocumentoID.Enabled = false;
+            cbxAprovacaoMotoristaID.Enabled = false;
+            cbxAprovacaoUsuarioID.Enabled = false;
+
+            txtAprovacaoArquivo.Text = String.Empty;
+            txtAprovacaoMensagem.Text = String.Empty;
+            rdbAprovacaoAprovado.Checked = false;
+            rdbAprovacaoReprovado.Checked = false;
+            cbxAprovacaoMotoristaID.SelectedIndex = -1;
+            cbxAprovacaoUsuarioID.SelectedIndex = -1;
+
+            CarregarGridAprovacao();
+
+            using (var context = new CadastroMotoristaContext())
+            {
+                BindingSource bi = new BindingSource();
+                bi.DataSource = context.Usuarios.ToList();
+                cbxAprovacaoUsuarioID.DataSource = bi;
+                cbxAprovacaoUsuarioID.ValueMember = "UsuarioID";
+                cbxAprovacaoUsuarioID.DisplayMember = "Nome";
+                cbxAprovacaoUsuarioID.Refresh();
+
+                BindingSource bi2 = new BindingSource();
+                bi2.DataSource = context.Motoristas.ToList();
+                cbxAprovacaoMotoristaID.DataSource = bi2;
+                cbxAprovacaoMotoristaID.ValueMember = "MotoristaID";
+                cbxAprovacaoMotoristaID.DisplayMember = "Nome";
+                cbxAprovacaoMotoristaID.Refresh();
+            }
+
+            dgvAprovacao.Focus();
+        }
+
+        private void CarregarGridAprovacao()
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+                BindingSource bi = new BindingSource();
+                bi.DataSource = context.Documentos.Select(o => new ModelViewDocumento()
+                {
+                    DocumentoID = o.DocumentoID,
+                    Arquivo = o.nomeArquivo + o.extensaoArquivo,
+                    aprovado = o.aprovado,
+                    reprovado = o.reprovado,
+                    MotoristaNome = o.Motorista.Nome,
+                    UsuarioNome = o.Usuario.Nome
+                })
+                                                            .Where(a => a.aprovado == false & a.reprovado == false)
+                                                            .ToList();
+                dgvAprovacao.DataSource = bi;
+                dgvAprovacao.Refresh();
+            }
+            txtAprovacaoNumeroRegistros.Text = dgvAprovacao.RowCount.ToString();
+        }
+
+        private void CarregarDadosAprovacao(Int32 ID)
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+                var documento = context.Documentos
+                                     .Where(a => a.DocumentoID == ID)
+                                     .Include(a => a.Motorista)
+                                     .Include(a => a.Usuario)
+                                     .FirstOrDefault<Documento>();
+                if (documento != null)
+                {
+                    txtAprovacaoDocumentoID.Text = documento.DocumentoID.ToString();
+                    rdbDocumentoAprovado.Checked = documento.aprovado;
+                    rdbDocumentoReprovado.Checked = documento.reprovado;
+                    if (documento.Usuario != null)
+                    {
+                        cbxAprovacaoUsuarioID.SelectedValue = documento.Usuario.UsuarioID;
+                    }
+
+                    if (documento.Motorista != null)
+                    {
+                        cbxAprovacaoMotoristaID.SelectedValue = documento.Motorista.MotoristaID;
+                    }
+
+                    txtAprovacaoArquivo.Text = String.Format("{0}{1}", documento.nomeArquivo, documento.extensaoArquivo);
+
+                    btnAprovacaoAbrir.Enabled = true;
+                    btnAprovacaoAprovar.Enabled = true;
+                    btnAprovacaoReprovar.Enabled = true;
+                    txtAprovacaoMensagem.Enabled = true;
+                    txtAprovacaoMensagem.Focus();
+                }
+            }
+        }
+
+        private void tabAprovacaoDocumentos_Enter(object sender, EventArgs e)
+        {
+            LimparAprovacao();
+
+        }
+
+        private void btnAprovacaoAbrir_Click(object sender, EventArgs e)
+        {
+            Int32 documentoID = txtAprovacaoDocumentoID.Text.ConvertToInt();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (var context = new CadastroMotoristaContext())
+                {
+                    var documento = context.Documentos
+                                         .Where(a => a.DocumentoID == documentoID)
+                                         .FirstOrDefault<Documento>();
+                    if (documento != null)
+                    {
+                        memoryStream.Write(documento.dados, 0, documento.dados.Length);
+                        string varq = MemoryStreamParaArquivo(memoryStream, documento.nomeArquivo + documento.extensaoArquivo, true);
+                        if (varq != string.Empty)
+                        {
+                            System.Diagnostics.Process.Start(varq);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnAprovacaoAprovar_Click(object sender, EventArgs e)
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+
+                Int32 usuarioID = cbxDocumentoUsuarioID.SelectedValue.ConvertToInt();
+                Int32 documentoID = txtAprovacaoDocumentoID.Text.ConvertToInt();
+
+                Documento documento = context.Documentos
+                               .Include(a => a.Usuario)
+                               .Where(a => a.DocumentoID == documentoID).FirstOrDefault<Documento>();
+
+                documento.aprovado = true;
+                documento.reprovado = false;
+
+                if (txtAprovacaoMensagem.Text.Trim() != String.Empty)
+                {
+
+                    Mensagem mensagem = new Mensagem
+                    {
+                        Usuario = documento.Usuario,
+                        DestinoUsuarioID = usuarioID,
+                        TextoMensagem = txtAprovacaoMensagem.Text
+                    };
+                    context.Mensagens.Add(mensagem);
+                }
+
+                context.SaveChanges();
+            }
+            CarregarGridAprovacao();
+        }
+
+        private void btnAprovacaoReprovar_Click(object sender, EventArgs e)
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+
+                Int32 usuarioID = usuarioLogin.UsuarioID;
+                Int32 documentoID = txtAprovacaoDocumentoID.Text.ConvertToInt();
+
+                Documento documento = context.Documentos
+                               .Include(a => a.Usuario)
+                               .Where(a => a.DocumentoID == documentoID).FirstOrDefault<Documento>();
+
+                Usuario usuario = context.Usuarios
+                                 .Where(a => a.UsuarioID == usuarioID).FirstOrDefault<Usuario>();
+
+
+                documento.aprovado = false;
+                documento.reprovado = true;
+
+                if (txtAprovacaoMensagem.Text.Trim() != String.Empty)
+                {
+                    Mensagem mensagem = new Mensagem
+                    {
+                        Usuario = usuario,
+                        DestinoUsuarioID = documento.Usuario.UsuarioID,
+                        TextoMensagem = txtAprovacaoMensagem.Text
+                    };
+                    context.Mensagens.Add(mensagem);
+                }
+
+                context.SaveChanges();
+            }
+            CarregarGridAprovacao();
+        }
+
+        private void rdbAprovacaoAprovado_Paint(object sender, PaintEventArgs e)
+        {
+            dynamic radio = (RadioButton)sender;
+            dynamic drawBrush = new SolidBrush(radio.ForeColor);
+            dynamic sf = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            e.Graphics.DrawString(((RadioButton)sender).Text, radio.Font, drawBrush, e.ClipRectangle, sf);
+            drawBrush.Dispose();
+            sf.Dispose();
+        }
+
+        private void rdbAprovacaoAprovado_EnabledChanged(object sender, EventArgs e)
+        {
+            ((RadioButton)sender).ForeColor = System.Drawing.Color.White;
+        }
+
+        private void dgvAprovacao_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAprovacao.RowCount > 0 && e.RowIndex > -1)
+            {
+                CarregarDadosAprovacao(dgvAprovacao.CurrentRow.Cells[0].Value.ConvertToInt());
+            }
+        }
+
+        private void dgvAprovacao_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAprovacao.RowCount > 0 && e.RowIndex > -1)
+            {
+                CarregarDadosAprovacao(dgvAprovacao.CurrentRow.Cells[0].Value.ConvertToInt());
+            }
+        }
+
+        #endregion
+
+        #region Mensagem
+
+        private void LimparMensagem()
+        {
+            btnMensagemExcluir.Enabled = false;
+            cbxMensagemRemetenteID.Enabled = false;
+            cbxMensagemDestinatarioID.Enabled = false;
+
+            txtAprovacaoDocumentoID.Enabled = false;
+            txtMensagemTextoMensagem.Enabled = false;
+
+            txtMensagemMensagemID.Text = String.Empty;
+            txtMensagemTextoMensagem.Text = String.Empty;
+            cbxMensagemRemetenteID.SelectedIndex = -1;
+            cbxMensagemDestinatarioID.SelectedIndex = -1;
+
+            CarregarGridMensagem();
+
+            using (var context = new CadastroMotoristaContext())
+            {
+                BindingSource bi = new BindingSource();
+                bi.DataSource = context.Usuarios.ToList();
+                cbxMensagemRemetenteID.DataSource = bi;
+                cbxMensagemRemetenteID.ValueMember = "UsuarioID";
+                cbxMensagemRemetenteID.DisplayMember = "Nome";
+                cbxMensagemRemetenteID.Refresh();
+
+                BindingSource bi2 = new BindingSource();
+                bi2.DataSource = context.Usuarios.ToList();
+                cbxMensagemDestinatarioID.DataSource = bi2;
+                cbxMensagemDestinatarioID.ValueMember = "UsuarioID";
+                cbxMensagemDestinatarioID.DisplayMember = "Nome";
+                cbxMensagemDestinatarioID.Refresh();
+            }
+
+            dgvAprovacao.Focus();
+        }
+
+        private void CarregarGridMensagem()
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+                BindingSource bi = new BindingSource();
+                bi.DataSource = context.Mensagens
+                                        .Where(a => a.Usuario.UsuarioID == usuarioLogin.UsuarioID | a.DestinoUsuarioID == usuarioLogin.UsuarioID)
+                                        .OrderByDescending(a => a.visualisado)
+                                        .ThenByDescending(a => a.MensagemID)
+                                        .ToList();
+                dgvMensagens.DataSource = bi;
+                dgvMensagens.Refresh();
+            }
+            txtMensagensNumeroRegistros.Text = dgvMensagens.RowCount.ToString();
+        }
+
+        private void CarregarDadosMensagem(Int32 ID)
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+                var mensagem = context.Mensagens
+                                     .Where(a => a.MensagemID == ID)
+                                     .Include(a => a.Usuario)
+                                     .FirstOrDefault<Mensagem>();
+                if (mensagem != null)
+                {
+                    txtMensagemMensagemID.Text = mensagem.MensagemID.ToString();
+                    if (mensagem.Usuario != null)
+                    {
+                        cbxMensagemRemetenteID.SelectedValue = mensagem.Usuario.UsuarioID;
+                    }
+
+                    if (mensagem.DestinoUsuarioID != 0)
+                    {
+                        cbxMensagemDestinatarioID.SelectedValue = mensagem.DestinoUsuarioID;
+                    }
+
+                    txtMensagemTextoMensagem.Text = mensagem.TextoMensagem;
+
+                    mensagem.visualisado = true;
+                    context.SaveChanges();
+
+                    btnMensagemExcluir.Enabled = true;
+                }
+            }
+            CarregarGridMensagem();
+        }
+
+        private void tabMensagens_Enter(object sender, EventArgs e)
+        {
+            LimparMensagem();
+
+        }
+
+        private void btnMensagemExcluir_Click(object sender, EventArgs e)
+        {
+            using (var context = new CadastroMotoristaContext())
+            {
+                try
+                {
+                    var mensagemID = txtMensagemMensagemID.Text.ConvertToInt();
+                    Mensagem mensagem = context.Mensagens
+                                    .Where(a => a.MensagemID == mensagemID).FirstOrDefault<Mensagem>();
+                    context.Entry(mensagem).State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+                {
+                    if (ex.InnerException != null && ex.InnerException is System.Data.Entity.Core.UpdateException)
+                    {
+                        if (ex.InnerException.InnerException != null && ex.InnerException.InnerException is System.Data.SqlClient.SqlException)
+                        {
+                            MessageBox.Show("Não é possível excluir esse registro, pois ele têm dependência com outro registro incluído no banco de dados.", "Erro");
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            LimparMensagem();
+        }
+
+        private void dgvMensagens_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMensagens.RowCount > 0 && e.RowIndex > -1)
+            {
+                CarregarDadosMensagem(dgvMensagens.CurrentRow.Cells[0].Value.ConvertToInt());
+            }
+        }
+
+        private void dgvMensagens_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMensagens.RowCount > 0 && e.RowIndex > -1)
+            {
+                CarregarDadosMensagem(dgvMensagens.CurrentRow.Cells[0].Value.ConvertToInt());
+            }
+        }
+
+        #endregion
+
     }
 }
