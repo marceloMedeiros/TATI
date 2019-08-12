@@ -422,11 +422,19 @@ namespace TATI
                 Int32 usuarioID = cbxDocumentoUsuarioID.SelectedValue.ConvertToInt();
                 Int32 motoristaID = cbxDocumentoMotoristaID.SelectedValue.ConvertToInt();
 
+              
+
                 var usuario = context.Usuarios
                                   .Where(a => a.UsuarioID == usuarioID).FirstOrDefault<Usuario>();
 
                 var motorista = context.Motoristas
                                   .Where(a => a.MotoristaID == motoristaID).FirstOrDefault<Motorista>();
+
+                if (motorista == null)
+                {
+                    MessageBox.Show("Nenhum motorista foi selecionado.", "Erro");
+                    return;
+                }
 
                 byte[] file;
                 if (File.Exists(txtDocumentoArquivo.Text))
