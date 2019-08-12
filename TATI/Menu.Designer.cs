@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.tabMotoristas = new System.Windows.Forms.TabPage();
+            this.btnMotoristaLimpar = new System.Windows.Forms.Button();
             this.lblMotoristaEmail = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblMotoristaNumeroRegistros = new System.Windows.Forms.Label();
@@ -53,32 +54,29 @@
             this.txtMotoristaMotoristaID = new System.Windows.Forms.TextBox();
             this.btnMotoristaIncluir = new System.Windows.Forms.Button();
             this.tbcMenu = new System.Windows.Forms.TabControl();
-            this.btnMotoristaLimpar = new System.Windows.Forms.Button();
             this.tabDocumentos = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cbxDocumentoUsuarioID = new System.Windows.Forms.ComboBox();
+            this.cbxDocumentoMotoristaID = new System.Windows.Forms.ComboBox();
+            this.btnDocumentoSelecionar = new System.Windows.Forms.Button();
+            this.btnDocumentoLimpar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtDocumentoNumeroRegistros = new System.Windows.Forms.TextBox();
+            this.rdbDocumentoReprovado = new System.Windows.Forms.RadioButton();
+            this.rdbDocumentoAprovado = new System.Windows.Forms.RadioButton();
+            this.btnDocumentoExcluir = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvDocumentos = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.txtDocumentoArquivo = new System.Windows.Forms.TextBox();
+            this.txtDocumentoDocumentoID = new System.Windows.Forms.TextBox();
+            this.btnDocumentoIncluir = new System.Windows.Forms.Button();
             this.tabAprovacaoDocumentos = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -101,7 +99,8 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
+            this.btnDocumentoDownload = new System.Windows.Forms.Button();
+            this.btnDocumentoAbrir = new System.Windows.Forms.Button();
             this.tabMotoristas.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -110,7 +109,7 @@
             this.tabDocumentos.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentos)).BeginInit();
             this.tabAprovacaoDocumentos.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -148,11 +147,21 @@
             this.tabMotoristas.Text = "Motoristas";
             this.tabMotoristas.Enter += new System.EventHandler(this.tabMotoristas_Enter);
             // 
+            // btnMotoristaLimpar
+            // 
+            this.btnMotoristaLimpar.Location = new System.Drawing.Point(391, 161);
+            this.btnMotoristaLimpar.Name = "btnMotoristaLimpar";
+            this.btnMotoristaLimpar.Size = new System.Drawing.Size(101, 23);
+            this.btnMotoristaLimpar.TabIndex = 14;
+            this.btnMotoristaLimpar.Text = "Limpar";
+            this.btnMotoristaLimpar.UseVisualStyleBackColor = true;
+            this.btnMotoristaLimpar.Click += new System.EventHandler(this.btnMotoristaLimpar_Click);
+            // 
             // lblMotoristaEmail
             // 
             this.lblMotoristaEmail.AutoSize = true;
             this.lblMotoristaEmail.ForeColor = System.Drawing.Color.White;
-            this.lblMotoristaEmail.Location = new System.Drawing.Point(16, 112);
+            this.lblMotoristaEmail.Location = new System.Drawing.Point(16, 111);
             this.lblMotoristaEmail.Name = "lblMotoristaEmail";
             this.lblMotoristaEmail.Size = new System.Drawing.Size(38, 13);
             this.lblMotoristaEmail.TabIndex = 6;
@@ -213,14 +222,14 @@
             // 
             // txtMotoristaCPFouCNPJ
             // 
-            this.txtMotoristaCPFouCNPJ.Location = new System.Drawing.Point(259, 133);
+            this.txtMotoristaCPFouCNPJ.Location = new System.Drawing.Point(259, 132);
             this.txtMotoristaCPFouCNPJ.Name = "txtMotoristaCPFouCNPJ";
             this.txtMotoristaCPFouCNPJ.Size = new System.Drawing.Size(109, 20);
             this.txtMotoristaCPFouCNPJ.TabIndex = 7;
             // 
             // btnMotoristaExcluir
             // 
-            this.btnMotoristaExcluir.Location = new System.Drawing.Point(267, 161);
+            this.btnMotoristaExcluir.Location = new System.Drawing.Point(284, 161);
             this.btnMotoristaExcluir.Name = "btnMotoristaExcluir";
             this.btnMotoristaExcluir.Size = new System.Drawing.Size(101, 23);
             this.btnMotoristaExcluir.TabIndex = 10;
@@ -230,7 +239,7 @@
             // 
             // btnMotoristaAlterar
             // 
-            this.btnMotoristaAlterar.Location = new System.Drawing.Point(159, 161);
+            this.btnMotoristaAlterar.Location = new System.Drawing.Point(176, 161);
             this.btnMotoristaAlterar.Name = "btnMotoristaAlterar";
             this.btnMotoristaAlterar.Size = new System.Drawing.Size(101, 23);
             this.btnMotoristaAlterar.TabIndex = 9;
@@ -242,7 +251,7 @@
             // 
             this.lblMotoristaCelular.AutoSize = true;
             this.lblMotoristaCelular.ForeColor = System.Drawing.Color.White;
-            this.lblMotoristaCelular.Location = new System.Drawing.Point(16, 137);
+            this.lblMotoristaCelular.Location = new System.Drawing.Point(16, 136);
             this.lblMotoristaCelular.Name = "lblMotoristaCelular";
             this.lblMotoristaCelular.Size = new System.Drawing.Size(42, 13);
             this.lblMotoristaCelular.TabIndex = 12;
@@ -250,7 +259,7 @@
             // 
             // txtMotoristaCelular
             // 
-            this.txtMotoristaCelular.Location = new System.Drawing.Point(68, 133);
+            this.txtMotoristaCelular.Location = new System.Drawing.Point(68, 132);
             this.txtMotoristaCelular.Mask = "(99) 00000-0000";
             this.txtMotoristaCelular.Name = "txtMotoristaCelular";
             this.txtMotoristaCelular.Size = new System.Drawing.Size(84, 20);
@@ -279,6 +288,7 @@
             this.dgvMotoristas.MultiSelect = false;
             this.dgvMotoristas.Name = "dgvMotoristas";
             this.dgvMotoristas.ReadOnly = true;
+            this.dgvMotoristas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMotoristas.Size = new System.Drawing.Size(773, 347);
             this.dgvMotoristas.TabIndex = 0;
             this.dgvMotoristas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMotoristas_CellClick);
@@ -292,15 +302,15 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(166, 3);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(436, 31);
+            this.lblTitulo.Size = new System.Drawing.Size(415, 31);
             this.lblTitulo.TabIndex = 9;
-            this.lblTitulo.Text = "Cadastro e Pesquisa de Motoristas";
+            this.lblTitulo.Text = "Motoristas - Cadastro e Pesquisa";
             // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.ForeColor = System.Drawing.Color.White;
-            this.lblSenha.Location = new System.Drawing.Point(16, 88);
+            this.lblSenha.Location = new System.Drawing.Point(16, 87);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(38, 13);
             this.lblSenha.TabIndex = 6;
@@ -328,14 +338,14 @@
             // 
             // txtMotoristaEmail
             // 
-            this.txtMotoristaEmail.Location = new System.Drawing.Point(68, 108);
+            this.txtMotoristaEmail.Location = new System.Drawing.Point(68, 107);
             this.txtMotoristaEmail.Name = "txtMotoristaEmail";
             this.txtMotoristaEmail.Size = new System.Drawing.Size(300, 20);
             this.txtMotoristaEmail.TabIndex = 3;
             // 
             // txtMotoristaNome
             // 
-            this.txtMotoristaNome.Location = new System.Drawing.Point(68, 84);
+            this.txtMotoristaNome.Location = new System.Drawing.Point(68, 83);
             this.txtMotoristaNome.Name = "txtMotoristaNome";
             this.txtMotoristaNome.Size = new System.Drawing.Size(300, 20);
             this.txtMotoristaNome.TabIndex = 2;
@@ -358,7 +368,7 @@
             // 
             // btnMotoristaIncluir
             // 
-            this.btnMotoristaIncluir.Location = new System.Drawing.Point(51, 161);
+            this.btnMotoristaIncluir.Location = new System.Drawing.Point(68, 161);
             this.btnMotoristaIncluir.Name = "btnMotoristaIncluir";
             this.btnMotoristaIncluir.Size = new System.Drawing.Size(101, 23);
             this.btnMotoristaIncluir.TabIndex = 8;
@@ -378,70 +388,80 @@
             this.tbcMenu.Size = new System.Drawing.Size(781, 561);
             this.tbcMenu.TabIndex = 0;
             // 
-            // btnMotoristaLimpar
-            // 
-            this.btnMotoristaLimpar.Location = new System.Drawing.Point(374, 161);
-            this.btnMotoristaLimpar.Name = "btnMotoristaLimpar";
-            this.btnMotoristaLimpar.Size = new System.Drawing.Size(101, 23);
-            this.btnMotoristaLimpar.TabIndex = 14;
-            this.btnMotoristaLimpar.Text = "Limpar";
-            this.btnMotoristaLimpar.UseVisualStyleBackColor = true;
-            this.btnMotoristaLimpar.Click += new System.EventHandler(this.btnMotoristaLimpar_Click);
-            // 
             // tabDocumentos
             // 
             this.tabDocumentos.BackColor = System.Drawing.Color.MidnightBlue;
-            this.tabDocumentos.Controls.Add(this.button1);
-            this.tabDocumentos.Controls.Add(this.label1);
+            this.tabDocumentos.Controls.Add(this.btnDocumentoAbrir);
+            this.tabDocumentos.Controls.Add(this.btnDocumentoDownload);
+            this.tabDocumentos.Controls.Add(this.cbxDocumentoUsuarioID);
+            this.tabDocumentos.Controls.Add(this.cbxDocumentoMotoristaID);
+            this.tabDocumentos.Controls.Add(this.btnDocumentoSelecionar);
+            this.tabDocumentos.Controls.Add(this.btnDocumentoLimpar);
             this.tabDocumentos.Controls.Add(this.panel2);
-            this.tabDocumentos.Controls.Add(this.radioButton1);
-            this.tabDocumentos.Controls.Add(this.radioButton2);
-            this.tabDocumentos.Controls.Add(this.maskedTextBox1);
-            this.tabDocumentos.Controls.Add(this.button3);
-            this.tabDocumentos.Controls.Add(this.button4);
-            this.tabDocumentos.Controls.Add(this.label3);
-            this.tabDocumentos.Controls.Add(this.maskedTextBox2);
+            this.tabDocumentos.Controls.Add(this.rdbDocumentoReprovado);
+            this.tabDocumentos.Controls.Add(this.rdbDocumentoAprovado);
+            this.tabDocumentos.Controls.Add(this.btnDocumentoExcluir);
             this.tabDocumentos.Controls.Add(this.panel5);
+            this.tabDocumentos.Controls.Add(this.label3);
             this.tabDocumentos.Controls.Add(this.label7);
+            this.tabDocumentos.Controls.Add(this.label1);
             this.tabDocumentos.Controls.Add(this.label8);
-            this.tabDocumentos.Controls.Add(this.label9);
             this.tabDocumentos.Controls.Add(this.label10);
-            this.tabDocumentos.Controls.Add(this.textBox2);
-            this.tabDocumentos.Controls.Add(this.textBox5);
-            this.tabDocumentos.Controls.Add(this.textBox6);
-            this.tabDocumentos.Controls.Add(this.textBox7);
-            this.tabDocumentos.Controls.Add(this.button5);
+            this.tabDocumentos.Controls.Add(this.txtDocumentoArquivo);
+            this.tabDocumentos.Controls.Add(this.txtDocumentoDocumentoID);
+            this.tabDocumentos.Controls.Add(this.btnDocumentoIncluir);
             this.tabDocumentos.Location = new System.Drawing.Point(4, 22);
             this.tabDocumentos.Name = "tabDocumentos";
             this.tabDocumentos.Padding = new System.Windows.Forms.Padding(3);
             this.tabDocumentos.Size = new System.Drawing.Size(773, 535);
             this.tabDocumentos.TabIndex = 4;
             this.tabDocumentos.Text = "Documentos";
+            this.tabDocumentos.Enter += new System.EventHandler(this.tabDocumentos_Enter);
             // 
-            // button1
+            // cbxDocumentoUsuarioID
             // 
-            this.button1.Location = new System.Drawing.Point(374, 161);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Limpar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cbxDocumentoUsuarioID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDocumentoUsuarioID.Enabled = false;
+            this.cbxDocumentoUsuarioID.FormattingEnabled = true;
+            this.cbxDocumentoUsuarioID.Location = new System.Drawing.Point(191, 58);
+            this.cbxDocumentoUsuarioID.Name = "cbxDocumentoUsuarioID";
+            this.cbxDocumentoUsuarioID.Size = new System.Drawing.Size(253, 21);
+            this.cbxDocumentoUsuarioID.TabIndex = 9;
             // 
-            // label1
+            // cbxDocumentoMotoristaID
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(16, 112);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "E-mail:";
+            this.cbxDocumentoMotoristaID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDocumentoMotoristaID.FormattingEnabled = true;
+            this.cbxDocumentoMotoristaID.Location = new System.Drawing.Point(70, 87);
+            this.cbxDocumentoMotoristaID.Name = "cbxDocumentoMotoristaID";
+            this.cbxDocumentoMotoristaID.Size = new System.Drawing.Size(374, 21);
+            this.cbxDocumentoMotoristaID.TabIndex = 0;
+            // 
+            // btnDocumentoSelecionar
+            // 
+            this.btnDocumentoSelecionar.Location = new System.Drawing.Point(306, 113);
+            this.btnDocumentoSelecionar.Name = "btnDocumentoSelecionar";
+            this.btnDocumentoSelecionar.Size = new System.Drawing.Size(61, 23);
+            this.btnDocumentoSelecionar.TabIndex = 2;
+            this.btnDocumentoSelecionar.Text = "Upload";
+            this.btnDocumentoSelecionar.UseVisualStyleBackColor = true;
+            this.btnDocumentoSelecionar.Click += new System.EventHandler(this.btnDocumentoSelecionar_Click);
+            // 
+            // btnDocumentoLimpar
+            // 
+            this.btnDocumentoLimpar.Location = new System.Drawing.Point(272, 160);
+            this.btnDocumentoLimpar.Name = "btnDocumentoLimpar";
+            this.btnDocumentoLimpar.Size = new System.Drawing.Size(99, 23);
+            this.btnDocumentoLimpar.TabIndex = 7;
+            this.btnDocumentoLimpar.Text = "Limpar";
+            this.btnDocumentoLimpar.UseVisualStyleBackColor = true;
+            this.btnDocumentoLimpar.Click += new System.EventHandler(this.btnDocumentoLimpar_Click);
             // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtDocumentoNumeroRegistros);
             this.panel2.Location = new System.Drawing.Point(630, 151);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(143, 39);
@@ -457,79 +477,53 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Nº de Registros:";
             // 
-            // textBox1
+            // txtDocumentoNumeroRegistros
             // 
-            this.textBox1.Location = new System.Drawing.Point(92, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(43, 20);
-            this.textBox1.TabIndex = 13;
+            this.txtDocumentoNumeroRegistros.Enabled = false;
+            this.txtDocumentoNumeroRegistros.Location = new System.Drawing.Point(92, 12);
+            this.txtDocumentoNumeroRegistros.Name = "txtDocumentoNumeroRegistros";
+            this.txtDocumentoNumeroRegistros.Size = new System.Drawing.Size(43, 20);
+            this.txtDocumentoNumeroRegistros.TabIndex = 13;
             // 
-            // radioButton1
+            // rdbDocumentoReprovado
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.ForeColor = System.Drawing.Color.White;
-            this.radioButton1.Location = new System.Drawing.Point(212, 134);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(52, 17);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "CNPJ";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdbDocumentoReprovado.AutoSize = true;
+            this.rdbDocumentoReprovado.Enabled = false;
+            this.rdbDocumentoReprovado.ForeColor = System.Drawing.Color.White;
+            this.rdbDocumentoReprovado.Location = new System.Drawing.Point(527, 62);
+            this.rdbDocumentoReprovado.Name = "rdbDocumentoReprovado";
+            this.rdbDocumentoReprovado.Size = new System.Drawing.Size(78, 17);
+            this.rdbDocumentoReprovado.TabIndex = 11;
+            this.rdbDocumentoReprovado.TabStop = true;
+            this.rdbDocumentoReprovado.Text = "Reprovado";
+            this.rdbDocumentoReprovado.UseVisualStyleBackColor = true;
+            this.rdbDocumentoReprovado.EnabledChanged += new System.EventHandler(this.rdbDocumentoReprovado_EnabledChanged);
+            this.rdbDocumentoReprovado.Paint += new System.Windows.Forms.PaintEventHandler(this.rdbDocumentoReprovado_Paint);
             // 
-            // radioButton2
+            // rdbDocumentoAprovado
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.Color.White;
-            this.radioButton2.Location = new System.Drawing.Point(164, 134);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(45, 17);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "CPF";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdbDocumentoAprovado.AutoSize = true;
+            this.rdbDocumentoAprovado.Enabled = false;
+            this.rdbDocumentoAprovado.ForeColor = System.Drawing.Color.White;
+            this.rdbDocumentoAprovado.Location = new System.Drawing.Point(450, 62);
+            this.rdbDocumentoAprovado.Name = "rdbDocumentoAprovado";
+            this.rdbDocumentoAprovado.Size = new System.Drawing.Size(71, 17);
+            this.rdbDocumentoAprovado.TabIndex = 10;
+            this.rdbDocumentoAprovado.TabStop = true;
+            this.rdbDocumentoAprovado.Text = "Aprovado";
+            this.rdbDocumentoAprovado.UseVisualStyleBackColor = true;
+            this.rdbDocumentoAprovado.EnabledChanged += new System.EventHandler(this.rdbDocumentoReprovado_EnabledChanged);
+            this.rdbDocumentoAprovado.Paint += new System.Windows.Forms.PaintEventHandler(this.rdbDocumentoReprovado_Paint);
             // 
-            // maskedTextBox1
+            // btnDocumentoExcluir
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(268, 133);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 7;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(267, 161);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(101, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Excluir";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(159, 161);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(101, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Alterar";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(16, 137);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Celular:";
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(68, 133);
-            this.maskedTextBox2.Mask = "(99) 00000-0000";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(92, 20);
-            this.maskedTextBox2.TabIndex = 4;
+            this.btnDocumentoExcluir.Location = new System.Drawing.Point(171, 160);
+            this.btnDocumentoExcluir.Name = "btnDocumentoExcluir";
+            this.btnDocumentoExcluir.Size = new System.Drawing.Size(99, 23);
+            this.btnDocumentoExcluir.TabIndex = 6;
+            this.btnDocumentoExcluir.Text = "Excluir";
+            this.btnDocumentoExcluir.UseVisualStyleBackColor = true;
+            this.btnDocumentoExcluir.Click += new System.EventHandler(this.btnDocumentoExcluir_Click);
             // 
             // panel5
             // 
@@ -537,25 +531,38 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.AutoSize = true;
-            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.dgvDocumentos);
             this.panel5.Location = new System.Drawing.Point(0, 192);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(773, 347);
             this.panel5.TabIndex = 10;
             // 
-            // dataGridView1
+            // dgvDocumentos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 347);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvDocumentos.AllowUserToAddRows = false;
+            this.dgvDocumentos.AllowUserToDeleteRows = false;
+            this.dgvDocumentos.AllowUserToResizeRows = false;
+            this.dgvDocumentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDocumentos.Location = new System.Drawing.Point(0, 0);
+            this.dgvDocumentos.MultiSelect = false;
+            this.dgvDocumentos.Name = "dgvDocumentos";
+            this.dgvDocumentos.ReadOnly = true;
+            this.dgvDocumentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDocumentos.Size = new System.Drawing.Size(773, 347);
+            this.dgvDocumentos.TabIndex = 0;
+            this.dgvDocumentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentos_CellClick);
+            this.dgvDocumentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentos_CellContentClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(137, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Usuário:";
             // 
             // label7
             // 
@@ -565,29 +572,29 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(166, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(463, 31);
+            this.label7.Size = new System.Drawing.Size(442, 31);
             this.label7.TabIndex = 9;
-            this.label7.Text = "Cadastro e Pesquisa de Documentos";
+            this.label7.Text = "Documentos - Cadastro e Pesquisa";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(16, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Motorista:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(16, 88);
+            this.label8.Location = new System.Drawing.Point(17, 118);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 6;
-            this.label8.Text = "Nome:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(171, 62);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "D/H Criação:";
+            this.label8.Text = "Arquivo:";
             // 
             // label10
             // 
@@ -599,44 +606,31 @@
             this.label10.TabIndex = 7;
             this.label10.Text = "ID:";
             // 
-            // textBox2
+            // txtDocumentoArquivo
             // 
-            this.textBox2.Location = new System.Drawing.Point(68, 108);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(300, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtDocumentoArquivo.Location = new System.Drawing.Point(70, 114);
+            this.txtDocumentoArquivo.Name = "txtDocumentoArquivo";
+            this.txtDocumentoArquivo.ReadOnly = true;
+            this.txtDocumentoArquivo.Size = new System.Drawing.Size(232, 20);
+            this.txtDocumentoArquivo.TabIndex = 1;
             // 
-            // textBox5
+            // txtDocumentoDocumentoID
             // 
-            this.textBox5.Location = new System.Drawing.Point(68, 84);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(300, 20);
-            this.textBox5.TabIndex = 2;
+            this.txtDocumentoDocumentoID.Enabled = false;
+            this.txtDocumentoDocumentoID.Location = new System.Drawing.Point(70, 58);
+            this.txtDocumentoDocumentoID.Name = "txtDocumentoDocumentoID";
+            this.txtDocumentoDocumentoID.Size = new System.Drawing.Size(63, 20);
+            this.txtDocumentoDocumentoID.TabIndex = 8;
             // 
-            // textBox6
+            // btnDocumentoIncluir
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(247, 58);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(121, 20);
-            this.textBox6.TabIndex = 1;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(68, 58);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(63, 20);
-            this.textBox7.TabIndex = 0;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(51, 161);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(101, 23);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Incluir";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnDocumentoIncluir.Location = new System.Drawing.Point(70, 160);
+            this.btnDocumentoIncluir.Name = "btnDocumentoIncluir";
+            this.btnDocumentoIncluir.Size = new System.Drawing.Size(99, 23);
+            this.btnDocumentoIncluir.TabIndex = 5;
+            this.btnDocumentoIncluir.Text = "Incluir";
+            this.btnDocumentoIncluir.UseVisualStyleBackColor = true;
+            this.btnDocumentoIncluir.Click += new System.EventHandler(this.BtnDocumentoIncluir_Click);
             // 
             // tabAprovacaoDocumentos
             // 
@@ -667,6 +661,18 @@
             this.tabAprovacaoDocumentos.Size = new System.Drawing.Size(773, 535);
             this.tabAprovacaoDocumentos.TabIndex = 5;
             this.tabAprovacaoDocumentos.Text = "Aprovação de Documentos";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(166, 3);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(503, 31);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Aprovação/ Reprovação de Documentos";
             // 
             // button6
             // 
@@ -876,17 +882,25 @@
             this.button9.Text = "Incluir";
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // label14
+            // btnDocumentoDownload
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(166, 3);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(503, 31);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "Aprovação/ Reprovação de Documentos";
+            this.btnDocumentoDownload.Location = new System.Drawing.Point(370, 113);
+            this.btnDocumentoDownload.Name = "btnDocumentoDownload";
+            this.btnDocumentoDownload.Size = new System.Drawing.Size(74, 23);
+            this.btnDocumentoDownload.TabIndex = 3;
+            this.btnDocumentoDownload.Text = "Download";
+            this.btnDocumentoDownload.UseVisualStyleBackColor = true;
+            this.btnDocumentoDownload.Click += new System.EventHandler(this.btnDocumentoDownload_Click);
+            // 
+            // btnDocumentoAbrir
+            // 
+            this.btnDocumentoAbrir.Location = new System.Drawing.Point(447, 113);
+            this.btnDocumentoAbrir.Name = "btnDocumentoAbrir";
+            this.btnDocumentoAbrir.Size = new System.Drawing.Size(74, 23);
+            this.btnDocumentoAbrir.TabIndex = 4;
+            this.btnDocumentoAbrir.Text = "Abrir";
+            this.btnDocumentoAbrir.UseVisualStyleBackColor = true;
+            this.btnDocumentoAbrir.Click += new System.EventHandler(this.btnDocumentoAbrir_Click);
             // 
             // Menu
             // 
@@ -910,7 +924,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentos)).EndInit();
             this.tabAprovacaoDocumentos.ResumeLayout(false);
             this.tabAprovacaoDocumentos.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -926,51 +940,34 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvMotoristas;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.TextBox txtMotoristaNome;
         private System.Windows.Forms.TextBox txtMotoristaMotoristaID;
         private System.Windows.Forms.Button btnMotoristaIncluir;
         private System.Windows.Forms.TabControl tbcMenu;
-        private System.Windows.Forms.MaskedTextBox txtMotoristaCelular;
-        private System.Windows.Forms.Label lblMotoristaCelular;
         private System.Windows.Forms.Label lblMotoristaDataHoraCriacao;
         private System.Windows.Forms.TextBox txtMotoristaDataHoraCriacao;
-        private System.Windows.Forms.MaskedTextBox txtMotoristaCPFouCNPJ;
         private System.Windows.Forms.Button btnMotoristaExcluir;
         private System.Windows.Forms.Button btnMotoristaAlterar;
-        private System.Windows.Forms.RadioButton rdbCNPJ;
-        private System.Windows.Forms.RadioButton rdbCPF;
         private System.Windows.Forms.Label lblMotoristaNumeroRegistros;
         private System.Windows.Forms.TextBox txtMotoristaNumeroRegistros;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblMotoristaEmail;
-        private System.Windows.Forms.TextBox txtMotoristaEmail;
         private System.Windows.Forms.Button btnMotoristaLimpar;
         private System.Windows.Forms.TabPage tabDocumentos;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnDocumentoLimpar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.TextBox txtDocumentoNumeroRegistros;
+        private System.Windows.Forms.RadioButton rdbDocumentoReprovado;
+        private System.Windows.Forms.RadioButton rdbDocumentoAprovado;
+        private System.Windows.Forms.Button btnDocumentoExcluir;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvDocumentos;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox txtDocumentoArquivo;
+        private System.Windows.Forms.TextBox txtDocumentoDocumentoID;
+        private System.Windows.Forms.Button btnDocumentoIncluir;
         private System.Windows.Forms.TabPage tabAprovacaoDocumentos;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button6;
@@ -995,6 +992,22 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ComboBox cbxDocumentoUsuarioID;
+        private System.Windows.Forms.ComboBox cbxDocumentoMotoristaID;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMotoristaEmail;
+        private System.Windows.Forms.RadioButton rdbCNPJ;
+        private System.Windows.Forms.RadioButton rdbCPF;
+        private System.Windows.Forms.MaskedTextBox txtMotoristaCPFouCNPJ;
+        private System.Windows.Forms.Label lblMotoristaCelular;
+        private System.Windows.Forms.MaskedTextBox txtMotoristaCelular;
+        private System.Windows.Forms.Label lblSenha;
+        private System.Windows.Forms.TextBox txtMotoristaEmail;
+        private System.Windows.Forms.TextBox txtMotoristaNome;
+        private System.Windows.Forms.Button btnDocumentoSelecionar;
+        private System.Windows.Forms.Button btnDocumentoDownload;
+        private System.Windows.Forms.Button btnDocumentoAbrir;
     }
 }
 

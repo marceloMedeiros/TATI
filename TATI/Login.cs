@@ -15,6 +15,7 @@ namespace TATI
         private void Login_Load(object sender, EventArgs e)
         {
             lblErro.Visible = false;
+            txtSenha.PasswordChar = '*';
             txtUsuario.Focus();
         }
 
