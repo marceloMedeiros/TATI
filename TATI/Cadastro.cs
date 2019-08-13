@@ -7,12 +7,9 @@ namespace TATI
 {
     public partial class Cadastro : Form
     {
-        string conectionString;
-
-        public Cadastro(string conectionStr)
+        public Cadastro()
         {
             InitializeComponent();
-            conectionString = conectionStr;
         }
 
         public string usuarioCadastrado = String.Empty;
@@ -26,7 +23,7 @@ namespace TATI
 
         private Usuario verificaUsuario(string login)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var usuarios = context.Usuarios
                                      .Where(a => a.Login == login);
@@ -103,7 +100,7 @@ namespace TATI
 
             if (usuario == null)
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     usuario = new Usuario
                     {

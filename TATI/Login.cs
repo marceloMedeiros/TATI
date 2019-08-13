@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TATI.Models;
@@ -8,8 +7,6 @@ namespace TATI
 {
     public partial class Login : Form
     {
-        private string conectionString;
-
         public Login()
         {
             InitializeComponent();
@@ -21,30 +18,20 @@ namespace TATI
             txtSenha.PasswordChar = '*';
             txtUsuario.Focus();
 
-            if (File.Exists("conectionString.cfg"))
+            using (CadastroMotoristaContext dbContext = new CadastroMotoristaContext())
             {
-                conectionString = System.IO.File.ReadAllText("conectionString.cfg");
-
-                using (CadastroMotoristaContext dbContext = new CadastroMotoristaContext(conectionString))
+                if (!dbContext.Database.Exists())
                 {
-                   if (!dbContext.Database.Exists())
-                    {
-                        MessageBox.Show("Não foi possível conectar ao banco de dados. Verifique se o arquivo conectionString.cfg presente na pasta de execução deste programa contém a string de conexão correta para o banco de dados SQL Server.", "Erro");
-                        this.Close();
-                    }
+                    MessageBox.Show("Não foi possível conectar ao banco de dados. Verifique se o arquivo TATI.exe.config presente na pasta de execução deste programa contém a string de conexão correta para o banco de dados SQL Server.", "Erro");
+                    this.Close();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Arquivo conectionString.cfg deve estar presente na mesma pasta de execução deste programa contendo a string de conexão com o banco de dados SQL Server.", "Erro");
-                this.Close();
             }
 
         }
 
         private Usuario verificaCredenciais(string login, string senha)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var usuarios = context.Usuarios
                                      .Where(a => a.Login == login & a.Senha == senha);
@@ -105,7 +92,7 @@ namespace TATI
             else
             {
                 lblErro.Visible = false;
-                Menu form = new Menu(usuario, conectionString);
+                Menu form = new Menu(usuario);
                 form.StartPosition = FormStartPosition.CenterScreen;
                 this.Visible = false;
                 form.ShowDialog();
@@ -115,7 +102,7 @@ namespace TATI
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Cadastro form = new Cadastro(conectionString);
+            Cadastro form = new Cadastro();
             form.ShowDialog();
             limpar();
             txtUsuario.Text = form.usuarioCadastrado;

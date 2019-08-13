@@ -13,14 +13,12 @@ namespace TATI
 {
     public partial class Menu : Form
     {
-        private string conectionString;
         Usuario usuarioLogin;
 
-        public Menu(Usuario usuario, string conectionStr)
+        public Menu(Usuario usuario)
         {
             InitializeComponent();
             usuarioLogin = usuario;
-            conectionString = conectionStr;
         }
 
         private void Menu_Load(object sender, EventArgs e)
@@ -120,7 +118,7 @@ namespace TATI
         private void CarregarGridMotorista()
         {
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Motoristas.ToList();
@@ -132,7 +130,7 @@ namespace TATI
 
         private void CarregarDadosMotorista(Int32 ID)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var motorista = context.Motoristas
                                      .Where(a => a.MotoristaID == ID).FirstOrDefault<Motorista>();
@@ -179,7 +177,7 @@ namespace TATI
                 Email = txtMotoristaEmail.Text
             };
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var result = context.Motoristas.Add(motorista);
                 context.SaveChanges();
@@ -191,7 +189,7 @@ namespace TATI
         private void btnMotoristaAlterar_Click(object sender, EventArgs e)
         {
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var motoristaID = txtMotoristaMotoristaID.Text.ConvertToInt();
                 Motorista motorista = context.Motoristas
@@ -208,7 +206,7 @@ namespace TATI
 
         private void btnMotoristaExcluir_Click(object sender, EventArgs e)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 try
                 {
@@ -275,7 +273,7 @@ namespace TATI
             DataTable dt = new DataTable();
             Action<ExcelWrapper> fncGeraHeaderExcel = (objExcel) =>
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     BindingSource bi = new BindingSource();
                     dt = context.Motoristas.ToList().ToDataTable();
@@ -330,7 +328,7 @@ namespace TATI
 
             CarregarGridDocumento();
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Usuarios.ToList();
@@ -354,7 +352,7 @@ namespace TATI
 
         private void CarregarGridDocumento()
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Documentos.Select(o => new ModelViewDocumento()
@@ -374,7 +372,7 @@ namespace TATI
 
         private void CarregarDadosDocumento(Int32 ID)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var documento = context.Documentos
                                      .Where(a => a.DocumentoID == ID)
@@ -417,7 +415,7 @@ namespace TATI
 
             Int32 numeroProtocolo;
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
 
                 Int32 usuarioID = cbxDocumentoUsuarioID.SelectedValue.ConvertToInt();
@@ -508,7 +506,7 @@ namespace TATI
 
         private void btnDocumentoExcluir_Click(object sender, EventArgs e)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 try
                 {
@@ -581,7 +579,7 @@ namespace TATI
             Int32 documentoID = txtDocumentoDocumentoID.Text.ConvertToInt();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     var documento = context.Documentos
                                          .Where(a => a.DocumentoID == documentoID)
@@ -600,7 +598,7 @@ namespace TATI
             Int32 documentoID = txtDocumentoDocumentoID.Text.ConvertToInt();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     var documento = context.Documentos
                                          .Where(a => a.DocumentoID == documentoID)
@@ -623,7 +621,7 @@ namespace TATI
             Int32 documentoID = txtDocumentoDocumentoID.Text.ConvertToInt();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     var protocolo = context.Protocolos
                                          .Where(a => a.Documento.DocumentoID == documentoID)
@@ -646,7 +644,7 @@ namespace TATI
             DataTable dt = new DataTable();
             Action<ExcelWrapper> fncGeraHeaderExcel = (objExcel) =>
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     BindingSource bi = new BindingSource();
                     dt = context.Documentos.ToList().ToDataTable();
@@ -708,7 +706,7 @@ namespace TATI
 
             CarregarGridAprovacao();
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Usuarios.ToList();
@@ -730,7 +728,7 @@ namespace TATI
 
         private void CarregarGridAprovacao()
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Documentos.Select(o => new ModelViewDocumento()
@@ -752,7 +750,7 @@ namespace TATI
 
         private void CarregarDadosAprovacao(Int32 ID)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var documento = context.Documentos
                                      .Where(a => a.DocumentoID == ID)
@@ -796,7 +794,7 @@ namespace TATI
             Int32 documentoID = txtAprovacaoDocumentoID.Text.ConvertToInt();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                using (var context = new CadastroMotoristaContext(conectionString))
+                using (var context = new CadastroMotoristaContext())
                 {
                     var documento = context.Documentos
                                          .Where(a => a.DocumentoID == documentoID)
@@ -816,7 +814,7 @@ namespace TATI
 
         private void btnAprovacaoAprovar_Click(object sender, EventArgs e)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
 
                 Int32 usuarioID = cbxDocumentoUsuarioID.SelectedValue.ConvertToInt();
@@ -848,7 +846,7 @@ namespace TATI
 
         private void btnAprovacaoReprovar_Click(object sender, EventArgs e)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
 
                 Int32 usuarioID = usuarioLogin.UsuarioID;
@@ -917,7 +915,7 @@ namespace TATI
 
             CarregarGridMensagem();
 
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Usuarios.ToList();
@@ -939,7 +937,7 @@ namespace TATI
 
         private void CarregarGridMensagem()
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 BindingSource bi = new BindingSource();
                 bi.DataSource = context.Mensagens
@@ -957,7 +955,7 @@ namespace TATI
 
         private void CarregarDadosMensagem(Int32 ID)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 var mensagem = context.Mensagens
                                      .Where(a => a.MensagemID == ID)
@@ -995,7 +993,7 @@ namespace TATI
 
         private void btnMensagemExcluir_Click(object sender, EventArgs e)
         {
-            using (var context = new CadastroMotoristaContext(conectionString))
+            using (var context = new CadastroMotoristaContext())
             {
                 try
                 {
