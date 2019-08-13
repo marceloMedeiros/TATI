@@ -22,10 +22,21 @@ namespace TATI
             txtUsuario.Focus();
 
             if (File.Exists("conectionString.cfg"))
+            {
                 conectionString = System.IO.File.ReadAllText("conectionString.cfg");
+
+                using (CadastroMotoristaContext dbContext = new CadastroMotoristaContext(conectionString))
+                {
+                   if (!dbContext.Database.Exists())
+                    {
+                        MessageBox.Show("Não foi possível conectar ao banco de dados. Verifique se o arquivo conectionString.cfg presente na pasta de execução deste programa contém a string de conexão correta para o banco de dados SQL Server.", "Erro");
+                        this.Close();
+                    }
+                }
+            }
             else
             {
-                MessageBox.Show("Arquivo conectionString.cfg deve estar presente na mesma pasta de execução deste programa contendo a string de conexão com o bando de dados SQL Server.", "Erro");
+                MessageBox.Show("Arquivo conectionString.cfg deve estar presente na mesma pasta de execução deste programa contendo a string de conexão com o banco de dados SQL Server.", "Erro");
                 this.Close();
             }
 
