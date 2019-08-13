@@ -1,6 +1,6 @@
 ﻿namespace TATI
 {
-    partial class Login
+    partial class Cadastro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.btnLogin = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cadastro));
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.txtSenha = new System.Windows.Forms.TextBox();
@@ -37,33 +37,35 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblErro = new System.Windows.Forms.Label();
-            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ckbAdministrador = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // btnLogin
+            // btnCadastrar
             // 
-            this.btnLogin.Location = new System.Drawing.Point(119, 150);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(207, 23);
-            this.btnLogin.TabIndex = 2;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnCadastrar.Location = new System.Drawing.Point(111, 171);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(207, 23);
+            this.btnCadastrar.TabIndex = 4;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(168, 94);
+            this.txtUsuario.Location = new System.Drawing.Point(160, 96);
             this.txtUsuario.MaxLength = 30;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(158, 20);
-            this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TabIndex = 1;
             this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblUsuario.Location = new System.Drawing.Point(116, 97);
+            this.lblUsuario.Location = new System.Drawing.Point(108, 99);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(46, 13);
             this.lblUsuario.TabIndex = 2;
@@ -71,18 +73,18 @@
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(168, 120);
+            this.txtSenha.Location = new System.Drawing.Point(160, 122);
             this.txtSenha.MaxLength = 30;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(158, 20);
-            this.txtSenha.TabIndex = 1;
+            this.txtSenha.TabIndex = 2;
             this.txtSenha.Enter += new System.EventHandler(this.txtSenha_Enter);
             // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSenha.Location = new System.Drawing.Point(116, 123);
+            this.lblSenha.Location = new System.Drawing.Point(108, 125);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(41, 13);
             this.lblSenha.TabIndex = 2;
@@ -93,11 +95,11 @@
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTitulo.Location = new System.Drawing.Point(109, 23);
+            this.lblTitulo.Location = new System.Drawing.Point(87, 21);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(218, 31);
+            this.lblTitulo.Size = new System.Drawing.Size(263, 31);
             this.lblTitulo.TabIndex = 3;
-            this.lblTitulo.Text = "Login de Usuário";
+            this.lblTitulo.Text = "Cadastro de Usuário";
             // 
             // label1
             // 
@@ -113,43 +115,65 @@
             // 
             this.lblErro.AutoSize = true;
             this.lblErro.ForeColor = System.Drawing.Color.Red;
-            this.lblErro.Location = new System.Drawing.Point(144, 205);
+            this.lblErro.Location = new System.Drawing.Point(136, 200);
             this.lblErro.Name = "lblErro";
             this.lblErro.Size = new System.Drawing.Size(156, 13);
             this.lblErro.TabIndex = 5;
             this.lblErro.Text = "Usuário e/ou senha incorreto(s)";
             this.lblErro.Visible = false;
             // 
-            // btnCadastrar
+            // txtNome
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(120, 176);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(207, 23);
-            this.btnCadastrar.TabIndex = 6;
-            this.btnCadastrar.Text = "Cadastrar Novo Usuário";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
-            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            this.txtNome.Location = new System.Drawing.Point(160, 70);
+            this.txtNome.MaxLength = 30;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(158, 20);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.Enter += new System.EventHandler(this.txtNome_Enter);
             // 
-            // Login
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(108, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nome:";
+            // 
+            // ckbAdministrador
+            // 
+            this.ckbAdministrador.AutoSize = true;
+            this.ckbAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckbAdministrador.Location = new System.Drawing.Point(179, 149);
+            this.ckbAdministrador.Name = "ckbAdministrador";
+            this.ckbAdministrador.Size = new System.Drawing.Size(89, 17);
+            this.ckbAdministrador.TabIndex = 3;
+            this.ckbAdministrador.Text = "Administrador";
+            this.ckbAdministrador.UseVisualStyleBackColor = true;
+            // 
+            // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(437, 237);
-            this.Controls.Add(this.btnCadastrar);
+            this.Controls.Add(this.ckbAdministrador);
             this.Controls.Add(this.lblErro);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblSenha);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.txtSenha);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtUsuario);
-            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnCadastrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.Name = "Login";
+            this.Name = "Cadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TATI - Controle de Motoristas";
             this.Load += new System.EventHandler(this.Login_Load);
@@ -161,7 +185,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TextBox txtSenha;
@@ -169,6 +193,8 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblErro;
-        private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox ckbAdministrador;
     }
 }

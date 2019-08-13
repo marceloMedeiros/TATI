@@ -16,6 +16,12 @@ namespace TATI
 
         }
 
+        public CadastroMotoristaContext(string customStr)
+                : base(customStr)
+        {
+
+        }
+
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Motorista> Motoristas { get; set; }
         public DbSet<Documento> Documentos { get; set; }

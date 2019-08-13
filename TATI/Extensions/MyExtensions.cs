@@ -1,13 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Net.Mail;
 using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Extensions
 {
@@ -197,7 +191,7 @@ namespace Extensions
                     temp = pia[i].GetValue(item, null);
                     if (temp == null || (temp.GetType().Name == "Char" && ((char)temp).Equals('\0')))
                     {
-                        dr[pia[i].Name] = (object)DBNull.Value;
+                        dr[pia[i].Name] = DBNull.Value;
                     }
                     else
                     {

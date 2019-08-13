@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.tabDocumentos = new System.Windows.Forms.TabPage();
+            this.btnDocumentoRelatorio = new System.Windows.Forms.Button();
             this.btnDocumentosAbrirProtocolo = new System.Windows.Forms.Button();
             this.btnDocumentoAbrir = new System.Windows.Forms.Button();
             this.btnDocumentoDownload = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.txtDocumentoDocumentoID = new System.Windows.Forms.TextBox();
             this.btnDocumentoIncluir = new System.Windows.Forms.Button();
             this.tabMotoristas = new System.Windows.Forms.TabPage();
+            this.btnMotoristaRelatorio = new System.Windows.Forms.Button();
             this.btnMotoristaLimpar = new System.Windows.Forms.Button();
             this.lblMotoristaEmail = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -116,8 +118,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtMensagemTextoMensagem = new System.Windows.Forms.TextBox();
             this.txtMensagemMensagemID = new System.Windows.Forms.TextBox();
-            this.btnDocumentoRelatorio = new System.Windows.Forms.Button();
-            this.btnMotoristaRelatorio = new System.Windows.Forms.Button();
             this.tabDocumentos.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -139,7 +139,7 @@
             // 
             // tabDocumentos
             // 
-            this.tabDocumentos.BackColor = System.Drawing.Color.MidnightBlue;
+            this.tabDocumentos.BackColor = System.Drawing.SystemColors.Control;
             this.tabDocumentos.Controls.Add(this.btnDocumentoRelatorio);
             this.tabDocumentos.Controls.Add(this.btnDocumentosAbrirProtocolo);
             this.tabDocumentos.Controls.Add(this.btnDocumentoAbrir);
@@ -169,9 +169,19 @@
             this.tabDocumentos.Text = "Documentos";
             this.tabDocumentos.Enter += new System.EventHandler(this.tabDocumentos_Enter);
             // 
+            // btnDocumentoRelatorio
+            // 
+            this.btnDocumentoRelatorio.Location = new System.Drawing.Point(373, 160);
+            this.btnDocumentoRelatorio.Name = "btnDocumentoRelatorio";
+            this.btnDocumentoRelatorio.Size = new System.Drawing.Size(99, 23);
+            this.btnDocumentoRelatorio.TabIndex = 14;
+            this.btnDocumentoRelatorio.Text = "Relatório";
+            this.btnDocumentoRelatorio.UseVisualStyleBackColor = true;
+            this.btnDocumentoRelatorio.Click += new System.EventHandler(this.btnDocumentoRelatorio_Click);
+            // 
             // btnDocumentosAbrirProtocolo
             // 
-            this.btnDocumentosAbrirProtocolo.Location = new System.Drawing.Point(549, 113);
+            this.btnDocumentosAbrirProtocolo.Location = new System.Drawing.Point(554, 113);
             this.btnDocumentosAbrirProtocolo.Name = "btnDocumentosAbrirProtocolo";
             this.btnDocumentosAbrirProtocolo.Size = new System.Drawing.Size(99, 23);
             this.btnDocumentosAbrirProtocolo.TabIndex = 4;
@@ -181,7 +191,7 @@
             // 
             // btnDocumentoAbrir
             // 
-            this.btnDocumentoAbrir.Location = new System.Drawing.Point(447, 113);
+            this.btnDocumentoAbrir.Location = new System.Drawing.Point(452, 113);
             this.btnDocumentoAbrir.Name = "btnDocumentoAbrir";
             this.btnDocumentoAbrir.Size = new System.Drawing.Size(99, 23);
             this.btnDocumentoAbrir.TabIndex = 4;
@@ -191,7 +201,7 @@
             // 
             // btnDocumentoDownload
             // 
-            this.btnDocumentoDownload.Location = new System.Drawing.Point(370, 113);
+            this.btnDocumentoDownload.Location = new System.Drawing.Point(375, 113);
             this.btnDocumentoDownload.Name = "btnDocumentoDownload";
             this.btnDocumentoDownload.Size = new System.Drawing.Size(74, 23);
             this.btnDocumentoDownload.TabIndex = 3;
@@ -204,7 +214,7 @@
             this.cbxDocumentoUsuarioID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDocumentoUsuarioID.Enabled = false;
             this.cbxDocumentoUsuarioID.FormattingEnabled = true;
-            this.cbxDocumentoUsuarioID.Location = new System.Drawing.Point(191, 58);
+            this.cbxDocumentoUsuarioID.Location = new System.Drawing.Point(196, 58);
             this.cbxDocumentoUsuarioID.Name = "cbxDocumentoUsuarioID";
             this.cbxDocumentoUsuarioID.Size = new System.Drawing.Size(253, 21);
             this.cbxDocumentoUsuarioID.TabIndex = 9;
@@ -213,14 +223,14 @@
             // 
             this.cbxDocumentoMotoristaID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDocumentoMotoristaID.FormattingEnabled = true;
-            this.cbxDocumentoMotoristaID.Location = new System.Drawing.Point(70, 87);
+            this.cbxDocumentoMotoristaID.Location = new System.Drawing.Point(75, 87);
             this.cbxDocumentoMotoristaID.Name = "cbxDocumentoMotoristaID";
             this.cbxDocumentoMotoristaID.Size = new System.Drawing.Size(374, 21);
             this.cbxDocumentoMotoristaID.TabIndex = 0;
             // 
             // btnDocumentoSelecionar
             // 
-            this.btnDocumentoSelecionar.Location = new System.Drawing.Point(306, 113);
+            this.btnDocumentoSelecionar.Location = new System.Drawing.Point(311, 113);
             this.btnDocumentoSelecionar.Name = "btnDocumentoSelecionar";
             this.btnDocumentoSelecionar.Size = new System.Drawing.Size(61, 23);
             this.btnDocumentoSelecionar.TabIndex = 2;
@@ -251,7 +261,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
@@ -270,31 +280,27 @@
             // 
             this.rdbDocumentoReprovado.AutoSize = true;
             this.rdbDocumentoReprovado.Enabled = false;
-            this.rdbDocumentoReprovado.ForeColor = System.Drawing.Color.White;
-            this.rdbDocumentoReprovado.Location = new System.Drawing.Point(527, 62);
+            this.rdbDocumentoReprovado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdbDocumentoReprovado.Location = new System.Drawing.Point(532, 62);
             this.rdbDocumentoReprovado.Name = "rdbDocumentoReprovado";
             this.rdbDocumentoReprovado.Size = new System.Drawing.Size(78, 17);
             this.rdbDocumentoReprovado.TabIndex = 11;
             this.rdbDocumentoReprovado.TabStop = true;
             this.rdbDocumentoReprovado.Text = "Reprovado";
             this.rdbDocumentoReprovado.UseVisualStyleBackColor = true;
-            this.rdbDocumentoReprovado.EnabledChanged += new System.EventHandler(this.rdbDocumentoReprovado_EnabledChanged);
-            this.rdbDocumentoReprovado.Paint += new System.Windows.Forms.PaintEventHandler(this.rdbDocumentoReprovado_Paint);
             // 
             // rdbDocumentoAprovado
             // 
             this.rdbDocumentoAprovado.AutoSize = true;
             this.rdbDocumentoAprovado.Enabled = false;
-            this.rdbDocumentoAprovado.ForeColor = System.Drawing.Color.White;
-            this.rdbDocumentoAprovado.Location = new System.Drawing.Point(450, 62);
+            this.rdbDocumentoAprovado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdbDocumentoAprovado.Location = new System.Drawing.Point(455, 62);
             this.rdbDocumentoAprovado.Name = "rdbDocumentoAprovado";
             this.rdbDocumentoAprovado.Size = new System.Drawing.Size(71, 17);
             this.rdbDocumentoAprovado.TabIndex = 10;
             this.rdbDocumentoAprovado.TabStop = true;
             this.rdbDocumentoAprovado.Text = "Aprovado";
             this.rdbDocumentoAprovado.UseVisualStyleBackColor = true;
-            this.rdbDocumentoAprovado.EnabledChanged += new System.EventHandler(this.rdbDocumentoReprovado_EnabledChanged);
-            this.rdbDocumentoAprovado.Paint += new System.Windows.Forms.PaintEventHandler(this.rdbDocumentoReprovado_Paint);
             // 
             // btnDocumentoExcluir
             // 
@@ -338,8 +344,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(137, 62);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(142, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 6;
@@ -350,7 +356,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label7.Location = new System.Drawing.Point(166, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(442, 31);
@@ -360,28 +366,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(16, 91);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(9, 91);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Motorista:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Yellow;
-            this.label8.Location = new System.Drawing.Point(17, 118);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(9, 118);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 6;
             this.label8.Text = "Arquivo:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(16, 62);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(9, 62);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(21, 13);
             this.label10.TabIndex = 7;
@@ -389,7 +397,7 @@
             // 
             // txtDocumentoArquivo
             // 
-            this.txtDocumentoArquivo.Location = new System.Drawing.Point(70, 114);
+            this.txtDocumentoArquivo.Location = new System.Drawing.Point(75, 114);
             this.txtDocumentoArquivo.Name = "txtDocumentoArquivo";
             this.txtDocumentoArquivo.ReadOnly = true;
             this.txtDocumentoArquivo.Size = new System.Drawing.Size(232, 20);
@@ -398,7 +406,7 @@
             // txtDocumentoDocumentoID
             // 
             this.txtDocumentoDocumentoID.Enabled = false;
-            this.txtDocumentoDocumentoID.Location = new System.Drawing.Point(70, 58);
+            this.txtDocumentoDocumentoID.Location = new System.Drawing.Point(75, 58);
             this.txtDocumentoDocumentoID.Name = "txtDocumentoDocumentoID";
             this.txtDocumentoDocumentoID.Size = new System.Drawing.Size(63, 20);
             this.txtDocumentoDocumentoID.TabIndex = 8;
@@ -415,7 +423,7 @@
             // 
             // tabMotoristas
             // 
-            this.tabMotoristas.BackColor = System.Drawing.Color.MidnightBlue;
+            this.tabMotoristas.BackColor = System.Drawing.SystemColors.Control;
             this.tabMotoristas.Controls.Add(this.btnMotoristaRelatorio);
             this.tabMotoristas.Controls.Add(this.btnMotoristaLimpar);
             this.tabMotoristas.Controls.Add(this.lblMotoristaEmail);
@@ -445,6 +453,16 @@
             this.tabMotoristas.Text = "Motoristas";
             this.tabMotoristas.Enter += new System.EventHandler(this.tabMotoristas_Enter);
             // 
+            // btnMotoristaRelatorio
+            // 
+            this.btnMotoristaRelatorio.Location = new System.Drawing.Point(497, 161);
+            this.btnMotoristaRelatorio.Name = "btnMotoristaRelatorio";
+            this.btnMotoristaRelatorio.Size = new System.Drawing.Size(99, 23);
+            this.btnMotoristaRelatorio.TabIndex = 15;
+            this.btnMotoristaRelatorio.Text = "Relatório";
+            this.btnMotoristaRelatorio.UseVisualStyleBackColor = true;
+            this.btnMotoristaRelatorio.Click += new System.EventHandler(this.btnMotoristaRelatorio_Click);
+            // 
             // btnMotoristaLimpar
             // 
             this.btnMotoristaLimpar.Location = new System.Drawing.Point(391, 161);
@@ -458,10 +476,11 @@
             // lblMotoristaEmail
             // 
             this.lblMotoristaEmail.AutoSize = true;
-            this.lblMotoristaEmail.ForeColor = System.Drawing.Color.Yellow;
+            this.lblMotoristaEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotoristaEmail.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblMotoristaEmail.Location = new System.Drawing.Point(16, 111);
             this.lblMotoristaEmail.Name = "lblMotoristaEmail";
-            this.lblMotoristaEmail.Size = new System.Drawing.Size(38, 13);
+            this.lblMotoristaEmail.Size = new System.Drawing.Size(45, 13);
             this.lblMotoristaEmail.TabIndex = 6;
             this.lblMotoristaEmail.Text = "E-mail:";
             // 
@@ -478,7 +497,7 @@
             // lblMotoristaNumeroRegistros
             // 
             this.lblMotoristaNumeroRegistros.AutoSize = true;
-            this.lblMotoristaNumeroRegistros.ForeColor = System.Drawing.Color.White;
+            this.lblMotoristaNumeroRegistros.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblMotoristaNumeroRegistros.Location = new System.Drawing.Point(6, 16);
             this.lblMotoristaNumeroRegistros.Name = "lblMotoristaNumeroRegistros";
             this.lblMotoristaNumeroRegistros.Size = new System.Drawing.Size(84, 13);
@@ -496,10 +515,11 @@
             // rdbCNPJ
             // 
             this.rdbCNPJ.AutoSize = true;
-            this.rdbCNPJ.ForeColor = System.Drawing.Color.Yellow;
+            this.rdbCNPJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbCNPJ.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rdbCNPJ.Location = new System.Drawing.Point(203, 134);
             this.rdbCNPJ.Name = "rdbCNPJ";
-            this.rdbCNPJ.Size = new System.Drawing.Size(52, 17);
+            this.rdbCNPJ.Size = new System.Drawing.Size(56, 17);
             this.rdbCNPJ.TabIndex = 6;
             this.rdbCNPJ.TabStop = true;
             this.rdbCNPJ.Text = "CNPJ";
@@ -508,10 +528,11 @@
             // rdbCPF
             // 
             this.rdbCPF.AutoSize = true;
-            this.rdbCPF.ForeColor = System.Drawing.Color.Yellow;
+            this.rdbCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbCPF.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rdbCPF.Location = new System.Drawing.Point(155, 134);
             this.rdbCPF.Name = "rdbCPF";
-            this.rdbCPF.Size = new System.Drawing.Size(45, 17);
+            this.rdbCPF.Size = new System.Drawing.Size(48, 17);
             this.rdbCPF.TabIndex = 5;
             this.rdbCPF.TabStop = true;
             this.rdbCPF.Text = "CPF";
@@ -548,10 +569,11 @@
             // lblMotoristaCelular
             // 
             this.lblMotoristaCelular.AutoSize = true;
-            this.lblMotoristaCelular.ForeColor = System.Drawing.Color.Yellow;
+            this.lblMotoristaCelular.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotoristaCelular.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblMotoristaCelular.Location = new System.Drawing.Point(16, 136);
             this.lblMotoristaCelular.Name = "lblMotoristaCelular";
-            this.lblMotoristaCelular.Size = new System.Drawing.Size(42, 13);
+            this.lblMotoristaCelular.Size = new System.Drawing.Size(50, 13);
             this.lblMotoristaCelular.TabIndex = 12;
             this.lblMotoristaCelular.Text = "Celular:";
             // 
@@ -597,8 +619,8 @@
             this.lblTitulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(166, 3);
+            this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitulo.Location = new System.Drawing.Point(185, 3);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(415, 31);
             this.lblTitulo.TabIndex = 9;
@@ -607,17 +629,18 @@
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
-            this.lblSenha.ForeColor = System.Drawing.Color.Yellow;
+            this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSenha.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblSenha.Location = new System.Drawing.Point(16, 87);
             this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(38, 13);
+            this.lblSenha.Size = new System.Drawing.Size(43, 13);
             this.lblSenha.TabIndex = 6;
             this.lblSenha.Text = "Nome:";
             // 
             // lblMotoristaDataHoraCriacao
             // 
             this.lblMotoristaDataHoraCriacao.AutoSize = true;
-            this.lblMotoristaDataHoraCriacao.ForeColor = System.Drawing.Color.White;
+            this.lblMotoristaDataHoraCriacao.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblMotoristaDataHoraCriacao.Location = new System.Drawing.Point(171, 62);
             this.lblMotoristaDataHoraCriacao.Name = "lblMotoristaDataHoraCriacao";
             this.lblMotoristaDataHoraCriacao.Size = new System.Drawing.Size(70, 13);
@@ -627,7 +650,7 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.ForeColor = System.Drawing.Color.White;
+            this.lblUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblUsuario.Location = new System.Drawing.Point(16, 62);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(21, 13);
@@ -689,7 +712,7 @@
             // 
             // tabAprovacaoDocumentos
             // 
-            this.tabAprovacaoDocumentos.BackColor = System.Drawing.Color.MidnightBlue;
+            this.tabAprovacaoDocumentos.BackColor = System.Drawing.SystemColors.Control;
             this.tabAprovacaoDocumentos.Controls.Add(this.btnAprovacaoAbrir);
             this.tabAprovacaoDocumentos.Controls.Add(this.cbxAprovacaoUsuarioID);
             this.tabAprovacaoDocumentos.Controls.Add(this.cbxAprovacaoMotoristaID);
@@ -718,7 +741,7 @@
             // 
             // btnAprovacaoAbrir
             // 
-            this.btnAprovacaoAbrir.Location = new System.Drawing.Point(370, 113);
+            this.btnAprovacaoAbrir.Location = new System.Drawing.Point(383, 113);
             this.btnAprovacaoAbrir.Name = "btnAprovacaoAbrir";
             this.btnAprovacaoAbrir.Size = new System.Drawing.Size(74, 23);
             this.btnAprovacaoAbrir.TabIndex = 3;
@@ -731,7 +754,7 @@
             this.cbxAprovacaoUsuarioID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAprovacaoUsuarioID.Enabled = false;
             this.cbxAprovacaoUsuarioID.FormattingEnabled = true;
-            this.cbxAprovacaoUsuarioID.Location = new System.Drawing.Point(215, 58);
+            this.cbxAprovacaoUsuarioID.Location = new System.Drawing.Point(228, 58);
             this.cbxAprovacaoUsuarioID.Name = "cbxAprovacaoUsuarioID";
             this.cbxAprovacaoUsuarioID.Size = new System.Drawing.Size(229, 21);
             this.cbxAprovacaoUsuarioID.TabIndex = 5;
@@ -741,7 +764,7 @@
             this.cbxAprovacaoMotoristaID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAprovacaoMotoristaID.Enabled = false;
             this.cbxAprovacaoMotoristaID.FormattingEnabled = true;
-            this.cbxAprovacaoMotoristaID.Location = new System.Drawing.Point(70, 87);
+            this.cbxAprovacaoMotoristaID.Location = new System.Drawing.Point(83, 87);
             this.cbxAprovacaoMotoristaID.Name = "cbxAprovacaoMotoristaID";
             this.cbxAprovacaoMotoristaID.Size = new System.Drawing.Size(374, 21);
             this.cbxAprovacaoMotoristaID.TabIndex = 8;
@@ -759,7 +782,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label4.Location = new System.Drawing.Point(6, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
@@ -778,35 +801,31 @@
             // 
             this.rdbAprovacaoReprovado.AutoSize = true;
             this.rdbAprovacaoReprovado.Enabled = false;
-            this.rdbAprovacaoReprovado.ForeColor = System.Drawing.Color.White;
-            this.rdbAprovacaoReprovado.Location = new System.Drawing.Point(527, 62);
+            this.rdbAprovacaoReprovado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdbAprovacaoReprovado.Location = new System.Drawing.Point(540, 62);
             this.rdbAprovacaoReprovado.Name = "rdbAprovacaoReprovado";
             this.rdbAprovacaoReprovado.Size = new System.Drawing.Size(78, 17);
             this.rdbAprovacaoReprovado.TabIndex = 7;
             this.rdbAprovacaoReprovado.TabStop = true;
             this.rdbAprovacaoReprovado.Text = "Reprovado";
             this.rdbAprovacaoReprovado.UseVisualStyleBackColor = true;
-            this.rdbAprovacaoReprovado.EnabledChanged += new System.EventHandler(this.rdbAprovacaoAprovado_EnabledChanged);
-            this.rdbAprovacaoReprovado.Paint += new System.Windows.Forms.PaintEventHandler(this.rdbAprovacaoAprovado_Paint);
             // 
             // rdbAprovacaoAprovado
             // 
             this.rdbAprovacaoAprovado.AutoSize = true;
             this.rdbAprovacaoAprovado.Enabled = false;
-            this.rdbAprovacaoAprovado.ForeColor = System.Drawing.Color.White;
-            this.rdbAprovacaoAprovado.Location = new System.Drawing.Point(450, 62);
+            this.rdbAprovacaoAprovado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdbAprovacaoAprovado.Location = new System.Drawing.Point(463, 62);
             this.rdbAprovacaoAprovado.Name = "rdbAprovacaoAprovado";
             this.rdbAprovacaoAprovado.Size = new System.Drawing.Size(71, 17);
             this.rdbAprovacaoAprovado.TabIndex = 6;
             this.rdbAprovacaoAprovado.TabStop = true;
             this.rdbAprovacaoAprovado.Text = "Aprovado";
             this.rdbAprovacaoAprovado.UseVisualStyleBackColor = true;
-            this.rdbAprovacaoAprovado.EnabledChanged += new System.EventHandler(this.rdbAprovacaoAprovado_EnabledChanged);
-            this.rdbAprovacaoAprovado.Paint += new System.Windows.Forms.PaintEventHandler(this.rdbAprovacaoAprovado_Paint);
             // 
             // btnAprovacaoReprovar
             // 
-            this.btnAprovacaoReprovar.Location = new System.Drawing.Point(469, 157);
+            this.btnAprovacaoReprovar.Location = new System.Drawing.Point(482, 157);
             this.btnAprovacaoReprovar.Name = "btnAprovacaoReprovar";
             this.btnAprovacaoReprovar.Size = new System.Drawing.Size(99, 23);
             this.btnAprovacaoReprovar.TabIndex = 2;
@@ -846,8 +865,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(137, 62);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(150, 62);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 6;
@@ -858,7 +877,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label6.Location = new System.Drawing.Point(166, 3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(475, 31);
@@ -868,8 +887,8 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(6, 91);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(8, 91);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 6;
@@ -878,18 +897,19 @@
             // lblAprovacaoMensagem
             // 
             this.lblAprovacaoMensagem.AutoSize = true;
-            this.lblAprovacaoMensagem.ForeColor = System.Drawing.Color.Yellow;
-            this.lblAprovacaoMensagem.Location = new System.Drawing.Point(6, 144);
+            this.lblAprovacaoMensagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAprovacaoMensagem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblAprovacaoMensagem.Location = new System.Drawing.Point(8, 144);
             this.lblAprovacaoMensagem.Name = "lblAprovacaoMensagem";
-            this.lblAprovacaoMensagem.Size = new System.Drawing.Size(62, 13);
+            this.lblAprovacaoMensagem.Size = new System.Drawing.Size(71, 13);
             this.lblAprovacaoMensagem.TabIndex = 6;
             this.lblAprovacaoMensagem.Text = "Mensagem:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(6, 118);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label11.Location = new System.Drawing.Point(8, 118);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 13);
             this.label11.TabIndex = 6;
@@ -898,8 +918,8 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(6, 62);
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label12.Location = new System.Drawing.Point(8, 62);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(21, 13);
             this.label12.TabIndex = 7;
@@ -907,7 +927,7 @@
             // 
             // txtAprovacaoMensagem
             // 
-            this.txtAprovacaoMensagem.Location = new System.Drawing.Point(70, 140);
+            this.txtAprovacaoMensagem.Location = new System.Drawing.Point(83, 140);
             this.txtAprovacaoMensagem.Multiline = true;
             this.txtAprovacaoMensagem.Name = "txtAprovacaoMensagem";
             this.txtAprovacaoMensagem.Size = new System.Drawing.Size(294, 40);
@@ -915,7 +935,7 @@
             // 
             // txtAprovacaoArquivo
             // 
-            this.txtAprovacaoArquivo.Location = new System.Drawing.Point(70, 114);
+            this.txtAprovacaoArquivo.Location = new System.Drawing.Point(83, 114);
             this.txtAprovacaoArquivo.Name = "txtAprovacaoArquivo";
             this.txtAprovacaoArquivo.ReadOnly = true;
             this.txtAprovacaoArquivo.Size = new System.Drawing.Size(294, 20);
@@ -924,14 +944,14 @@
             // txtAprovacaoDocumentoID
             // 
             this.txtAprovacaoDocumentoID.Enabled = false;
-            this.txtAprovacaoDocumentoID.Location = new System.Drawing.Point(70, 58);
+            this.txtAprovacaoDocumentoID.Location = new System.Drawing.Point(83, 58);
             this.txtAprovacaoDocumentoID.Name = "txtAprovacaoDocumentoID";
             this.txtAprovacaoDocumentoID.Size = new System.Drawing.Size(63, 20);
             this.txtAprovacaoDocumentoID.TabIndex = 4;
             // 
             // btnAprovacaoAprovar
             // 
-            this.btnAprovacaoAprovar.Location = new System.Drawing.Point(368, 157);
+            this.btnAprovacaoAprovar.Location = new System.Drawing.Point(381, 157);
             this.btnAprovacaoAprovar.Name = "btnAprovacaoAprovar";
             this.btnAprovacaoAprovar.Size = new System.Drawing.Size(99, 23);
             this.btnAprovacaoAprovar.TabIndex = 1;
@@ -941,7 +961,7 @@
             // 
             // tabMensagens
             // 
-            this.tabMensagens.BackColor = System.Drawing.Color.MidnightBlue;
+            this.tabMensagens.BackColor = System.Drawing.SystemColors.Control;
             this.tabMensagens.Controls.Add(this.cbxMensagemRemetenteID);
             this.tabMensagens.Controls.Add(this.cbxMensagemDestinatarioID);
             this.tabMensagens.Controls.Add(this.panel7);
@@ -995,7 +1015,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label13.Location = new System.Drawing.Point(6, 16);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(84, 13);
@@ -1052,7 +1072,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label14.Location = new System.Drawing.Point(6, 88);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(62, 13);
@@ -1064,7 +1084,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label15.Location = new System.Drawing.Point(246, 3);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(286, 31);
@@ -1074,7 +1094,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label16.Location = new System.Drawing.Point(234, 88);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(66, 13);
@@ -1084,7 +1104,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label17.Location = new System.Drawing.Point(6, 114);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(62, 13);
@@ -1094,7 +1114,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label19.Location = new System.Drawing.Point(6, 62);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(21, 13);
@@ -1118,26 +1138,6 @@
             this.txtMensagemMensagemID.Name = "txtMensagemMensagemID";
             this.txtMensagemMensagemID.Size = new System.Drawing.Size(63, 20);
             this.txtMensagemMensagemID.TabIndex = 4;
-            // 
-            // btnDocumentoRelatorio
-            // 
-            this.btnDocumentoRelatorio.Location = new System.Drawing.Point(373, 160);
-            this.btnDocumentoRelatorio.Name = "btnDocumentoRelatorio";
-            this.btnDocumentoRelatorio.Size = new System.Drawing.Size(99, 23);
-            this.btnDocumentoRelatorio.TabIndex = 14;
-            this.btnDocumentoRelatorio.Text = "Relatório";
-            this.btnDocumentoRelatorio.UseVisualStyleBackColor = true;
-            this.btnDocumentoRelatorio.Click += new System.EventHandler(this.btnDocumentoRelatorio_Click);
-            // 
-            // btnMotoristaRelatorio
-            // 
-            this.btnMotoristaRelatorio.Location = new System.Drawing.Point(497, 161);
-            this.btnMotoristaRelatorio.Name = "btnMotoristaRelatorio";
-            this.btnMotoristaRelatorio.Size = new System.Drawing.Size(99, 23);
-            this.btnMotoristaRelatorio.TabIndex = 15;
-            this.btnMotoristaRelatorio.Text = "Relatório";
-            this.btnMotoristaRelatorio.UseVisualStyleBackColor = true;
-            this.btnMotoristaRelatorio.Click += new System.EventHandler(this.btnMotoristaRelatorio_Click);
             // 
             // Menu
             // 

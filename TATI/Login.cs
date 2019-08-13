@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TATI.Models;
@@ -7,6 +8,8 @@ namespace TATI
 {
     public partial class Login : Form
     {
+        private string conectionString;
+
         public Login()
         {
             InitializeComponent();
@@ -17,11 +20,20 @@ namespace TATI
             lblErro.Visible = false;
             txtSenha.PasswordChar = '*';
             txtUsuario.Focus();
+
+            if (File.Exists("conectionString.cfg"))
+                conectionString = System.IO.File.ReadAllText("conectionString.cfg");
+            else
+            {
+                MessageBox.Show("Arquivo conectionString.cfg deve estar presente na mesma pasta de execução deste programa contendo a string de conexão com o bando de dados SQL Server.", "Erro");
+                this.Close();
+            }
+
         }
 
         private Usuario verificaCredenciais(string login, string senha)
         {
-            using (var context = new CadastroMotoristaContext())
+            using (var context = new CadastroMotoristaContext(conectionString))
             {
                 var usuarios = context.Usuarios
                                      .Where(a => a.Login == login & a.Senha == senha);
@@ -30,7 +42,9 @@ namespace TATI
                     return usuarios.Single<Usuario>();
                 }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -80,12 +94,21 @@ namespace TATI
             else
             {
                 lblErro.Visible = false;
-                Menu form = new Menu(usuario);
+                Menu form = new Menu(usuario, conectionString);
                 form.StartPosition = FormStartPosition.CenterScreen;
                 this.Visible = false;
                 form.ShowDialog();
                 limpar();
             }
         }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            Cadastro form = new Cadastro(conectionString);
+            form.ShowDialog();
+            limpar();
+            txtUsuario.Text = form.usuarioCadastrado;
+        }
+
     }
 }
